@@ -34,8 +34,5 @@ public abstract class ViewController {
         return prevView;
     }
     
-    public static void main(String args[])
-    {
-    	new MainView().initialize();
-    }
+    
 }

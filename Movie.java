@@ -1,18 +1,35 @@
-package com.models;
+package model;
 import java.util.*;
 public class Movie {
 	
+	
 	private String movieTitle;
-	private String showingStatus;
+	private int showingStatus;
 	private String sypnosis;
 	private String director;
 	private ArrayList <String> cast;
 	private double basePrice;
+	private boolean is3D;
+	private boolean isBlockBuster;
+	
+	public Movie()
+	{
+		
+	}
 	
 	
-	//
-	
-	
+	public Movie(String movieTitle, int showingStatus, String sypnosis, String director, ArrayList<String> cast,
+			double basePrice, boolean is3D, boolean isBlockBuster) {
+		super();
+		this.movieTitle = movieTitle;
+		this.showingStatus = showingStatus;
+		this.sypnosis = sypnosis;
+		this.director = director;
+		this.cast = cast;
+		this.basePrice = basePrice;
+		this.is3D= is3D;
+		this.isBlockBuster= isBlockBuster;
+	}
 
 	
 	public double getBasePrice() {
@@ -28,10 +45,10 @@ public class Movie {
 	public void setMovieTitle(String movieTitle) {
 		this.movieTitle = movieTitle;
 	}
-	public String getShowingStatus() {
+	public int getShowingStatus() {
 		return showingStatus;
 	}
-	public void setShowingStatus(String showingStatus) {
+	public void setShowingStatus(int showingStatus) {
 		this.showingStatus = showingStatus;
 	}
 	public String getSypnosis() {
@@ -53,6 +70,26 @@ public class Movie {
 		this.cast = cast;
 	}
 	
+	public boolean isIs3D() {
+		return is3D;
+	}
+
+
+	public void setIs3D(boolean is3d) {
+		is3D = is3d;
+	}
+
+
+	public boolean isBlockBuster() {
+		return isBlockBuster;
+	}
+
+
+	public void setBlockBuster(boolean isBlockBuster) {
+		this.isBlockBuster = isBlockBuster;
+	}
+
+	
 	
 	
 	//equals and hash code
@@ -63,7 +100,7 @@ public class Movie {
 		result = prime * result + ((cast == null) ? 0 : cast.hashCode());
 		result = prime * result + ((director == null) ? 0 : director.hashCode());
 		result = prime * result + ((movieTitle == null) ? 0 : movieTitle.hashCode());
-		result = prime * result + ((showingStatus == null) ? 0 : showingStatus.hashCode());
+		
 		result = prime * result + ((sypnosis == null) ? 0 : sypnosis.hashCode());
 		return result;
 	}
@@ -91,11 +128,7 @@ public class Movie {
 				return false;
 		} else if (!movieTitle.equals(other.movieTitle))
 			return false;
-		if (showingStatus == null) {
-			if (other.showingStatus != null)
-				return false;
-		} else if (!showingStatus.equals(other.showingStatus))
-			return false;
+		
 		if (sypnosis == null) {
 			if (other.sypnosis != null)
 				return false;
