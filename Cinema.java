@@ -6,6 +6,12 @@ public class Cinema {
 	private boolean is3D;
 	private boolean isPlatinum;
 	
+	public Cinema(Cineplex cineplex, boolean is3D, boolean isPlatinum) {
+		this.cineplex = cineplex;
+		this.is3D = is3D;
+		this.isPlatinum = isPlatinum;
+	}
+	
 	public Cineplex getCineplex() {
 		return cineplex;
 	}
