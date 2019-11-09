@@ -1,4 +1,4 @@
-package com.models;
+package model;
 
 public class Cineplex {
 	
