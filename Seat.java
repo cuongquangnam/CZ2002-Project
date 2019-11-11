@@ -8,13 +8,13 @@ public class Seat {
 	private Cinema cinema;
 	private Type type;
 	private Seat accompanied;
-	private Map<showTime, Boolean> selected;
+	private Map<MovieShowing, Boolean> selected;
 	
 	public Seat(Cinema cinema, Type type, Seat accompanied) {
 		this.cinema = cinema;
 		this.type = type;
 		this.accompanied = accompanied;
-		this.selected = new HashMap<showTime,Boolean>();
+		this.selected = new HashMap<MovieShowing,Boolean>();
 	}
 	public Type getType() {
 		return type;
@@ -32,13 +32,13 @@ public class Seat {
 	public Cinema getCinema(Cinema cinema) {
 		return cinema;
 	}
-	public void addShowTime(showTime show, boolean bool) {
+	public void addShowTime(MovieShowing show, boolean bool) {
 		this.addShowTime(show,Boolean.valueOf(bool));
 	}
-	public boolean getSelected(showTime time) {
+	public boolean getSelected(MovieShowing time) {
 		return selected.get(time).booleanValue();
 	}
-	public void setSelected(showTime time,boolean s ) {
+	public void setSelected(MovieShowing time,boolean s ) {
 		selected.put(time, Boolean.valueOf(s));
 	}
 }
