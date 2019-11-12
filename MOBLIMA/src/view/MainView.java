@@ -5,12 +5,15 @@ import controller.IOController;
 import controller.ViewController;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import static controller.IOController.printTitle;
 
 public class MainView extends ViewController {
     public void initialize() throws IOException, ClassNotFoundException {
+        displayMenu();
+    }
+
+    private void displayMenu() throws IOException, ClassNotFoundException {
         while(true) {
             // Main interface
             printTitle("MOvie Booking and LIsting Management Application (MOBLIMA)");

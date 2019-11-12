@@ -46,7 +46,7 @@ public class MovieListingController extends DataController{
 	}
 
 	//Return all movie object in the file
-	public static ArrayList<Movie> listAllMovie() throws IOException, ClassNotFoundException {
+	public static ArrayList<Movie> getAllMovie() throws IOException, ClassNotFoundException {
 		readMovieList();
 		return movieList;
 	}

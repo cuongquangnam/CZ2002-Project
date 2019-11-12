@@ -8,6 +8,9 @@ import java.io.IOException;
 
 import static controller.IOController.printTitle;
 
+/**
+ * This class represents the main admin view
+ */
 public class AdminView extends ViewController {
     private static boolean loggedIn;
 
@@ -18,7 +21,11 @@ public class AdminView extends ViewController {
         loggedIn = false;
     }
 
-
+    /**
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void initialize() throws IOException, ClassNotFoundException {
         login();
     }
@@ -30,9 +37,9 @@ public class AdminView extends ViewController {
             System.out.println("Please login to access staff system.");
 
             System.out.println("Please enter your username: ");
-            String username = LoginController.getUsername();
+            String username = LoginController.inputUsername();
             System.out.println("Please enter your password: ");
-            String password = LoginController.getPassword();
+            String password = LoginController.inputPassword();
 
             //Authentication function
             if (LoginController.isUserValid(username, password)) {

@@ -5,11 +5,14 @@ public class Cinema {
 	private Cineplex cineplex;
 	private boolean is3D;
 	private boolean isPlatinum;
+	private String code;
 
-	public Cinema(Cineplex cineplex, boolean is3D, boolean isPlatinum) {
+	public Cinema() {}
+	public Cinema(Cineplex cineplex, boolean is3D, boolean isPlatinum, String code) {
 		this.cineplex = cineplex;
 		this.is3D = is3D;
 		this.isPlatinum = isPlatinum;
+		this.code = code;
 	}
 
 	public Cineplex getCineplex() {
@@ -30,6 +33,11 @@ public class Cinema {
 	public void setPlatinum(boolean isPlatinum) {
 		this.isPlatinum = isPlatinum;
 	}
-
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 }

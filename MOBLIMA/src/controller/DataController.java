@@ -5,7 +5,7 @@ import java.io.*;
 
 public class DataController {
 
-    protected static Object readSerializedObject(String filename) throws IOException, ClassNotFoundException {
+    public static Object readSerializedObject(String filename) throws IOException, ClassNotFoundException {
         Object data;
         FileInputStream fileInputStream;
         ObjectInputStream objectInputStream;
@@ -22,7 +22,7 @@ public class DataController {
     }
 
 
-    protected static void writeSerializedObject(String filename, Object data) throws IOException {
+    public static void writeSerializedObject(String filename, Object data) throws IOException {
         FileOutputStream fileOutputStream;
         ObjectOutputStream objectOutputStream;
 

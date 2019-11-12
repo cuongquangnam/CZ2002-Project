@@ -1,88 +1,56 @@
 package view;
 
 import controller.ViewController;
+import view.moviegoer.*;
 
 import java.io.IOException;
 import java.util.Scanner;
 
+import static controller.IOController.getChoice;
 import static controller.IOController.printTitle;
 
 public class MovieGoerView extends ViewController {
     Scanner sc = new Scanner(System.in);
 
     public void initialize() throws IOException, ClassNotFoundException {
+        displayMenu();
+    }
+
+    private void displayMenu() throws IOException, ClassNotFoundException {
         while(true) {
             printTitle("Moviegoer");
             System.out.println("Welcome, please make a selection:");
             System.out.println("1. Search or list movies");
             System.out.println("2. View movie details");
-            System.out.println("3. Check seat availability");
-            System.out.println("4. Purchase ticket");
-            System.out.println("5. View booking history");
-            System.out.println("6. View Top 5 ranking movie");
-            System.out.println("7. Return");
+            System.out.println("3. Purchase ticket");
+            System.out.println("4. View booking history");
+            System.out.println("5. View Top 5 ranking movie");
+            System.out.println("6. Return");
 
-            int choice = sc.nextInt();
+            int choice = getChoice(1,6);
 
             switch (choice) {
                 case 1:
-                    searchOrListMovieMenu();
+                    changeView(this, new SearchListMovieView());
                     break;
                 case 2:
-                    viewMovieDetailsMenu();
+                    changeView(this, new MovieDetailsView());
                     break;
                 case 3:
-                    checkSeatMenu();
+                    changeView(this, new PurchaseTicketView());
                     break;
                 case 4:
-                    purchaseTicketMenu();
+                    changeView(this, new BookingHistoryView());
                     break;
                 case 5:
-                    viewBookingHistoryMenu();
+                    changeView(this, new Top5View());
                     break;
                 case 6:
-                    viewTop5Menu();
-                    break;
-                case 7:
                     deleteView();
                     break;
                 default:
                     System.out.println("Invalid selection.");
             }
-        }
-    }
-
-    private void searchOrListMovieMenu() {
-        while(true) {
-            System.out.println("Please make a selection:");
-            System.out.println("1. Search movie by name");
-            System.out.println("2. List all movies");
-            System.out.println("3. Return");
-
-            int choice = sc.nextInt();
-
-            switch (choice) {
-                case 1:
-
-                    break;
-                case 2:
-
-                    break;
-                case 3:
-                    return;
-                default:
-                    System.out.println("Invalid selection.");
-            }
-        }
-    }
-
-    private void viewMovieDetailsMenu() {
-        while(true) {
-            System.out.println("Please input movie name to view details or input 0 to return to previous screen:");
-            String input = sc.next();
-            if(input.equals("0"))
-                return;
-            //Show details
         }
     }
 
@@ -109,21 +77,4 @@ public class MovieGoerView extends ViewController {
         }
     }
 
-    private void purchaseTicketMenu() {
-        while(true) {
-
-        }
-    }
-
-    private void viewBookingHistoryMenu() {
-        while (true) {
-
-        }
-    }
-
-    private void viewTop5Menu() {
-        while (true) {
-
-        }
-    }
 }

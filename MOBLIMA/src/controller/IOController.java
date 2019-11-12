@@ -1,5 +1,6 @@
 package controller;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -112,5 +113,9 @@ public class IOController {
             System.out.println("Invalid Email address, try again.");
             return getEmail(message);
         }
+    }
+
+    public static String formatTimeMMddHHmm(Date time) {
+        return new SimpleDateFormat("MM/dd HH:mm").format(time);
     }
 }

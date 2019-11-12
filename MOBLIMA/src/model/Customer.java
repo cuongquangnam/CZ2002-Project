@@ -1,23 +1,25 @@
 package model;
 
+import java.io.IOException;
+
 public class Customer {
-	
-	private int customer_id;
+
 	private int age;
 	private String name;
 	private String mobile;
 	private String email;
 	private boolean isStudent;
+	private boolean isSenior;
+
 	private BookingHistory bookingHistory;
 	
-	public Customer (int customer_id, int age, String name, String mobile, String email, boolean isStudent) {
-		this.customer_id = customer_id;
+	public Customer (int customer_id, int age, String name, String mobile, String email, boolean isStudent, boolean isSenior) throws IOException, ClassNotFoundException {
 		this.age = age;
 		this.name = name;
 		this.mobile = mobile;
 		this.email = email;
 		this.isStudent = isStudent;
-		this.bookingHistory = new BookingHistory(this);
+		this.isSenior = isSenior;
 	}
 	public int getAge() {
 		return age;
@@ -49,11 +51,11 @@ public class Customer {
 	public void setStudent(boolean isStudent) {
 		this.isStudent = isStudent;
 	}
-	public int getCustomer_id() {
-		return customer_id;
+	public boolean isSeniorCitizen() {
+		return isSenior;
 	}
-	public void setCustomer_id(int customer_id) {
-		this.customer_id = customer_id;
+	public void setSenior(boolean isSenior) {
+		this.isSenior = isSenior;
 	}
 	public BookingHistory getBookingHistory() {
 		return bookingHistory;

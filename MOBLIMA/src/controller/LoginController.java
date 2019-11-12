@@ -1,26 +1,24 @@
 package controller;
 import java.util.Scanner;
-import model.*;
+
+import static model.LoginService.validateUser;
 
 public class LoginController {
-	public static String getUsername()
+    static Scanner sc = new Scanner(System.in);
+	public static String inputUsername()
 	{
-		Scanner sc = new Scanner(System.in);
 		String username = sc.next();
 		return username;
 	}
 	
-	public static String getPassword()
+	public static String inputPassword()
 	{
-		Scanner sc = new Scanner(System.in);
 		String password = sc.next();
 		return password;
 	}
 
-	public static boolean isUserValid(String username, String password)
-	{
-		LoginService service = new LoginService();
-		boolean validate = service.validateUser(username, password);
+	public static boolean isUserValid(String username, String password) {
+		boolean validate = validateUser(username, password);
 		return validate;
 	}
 	

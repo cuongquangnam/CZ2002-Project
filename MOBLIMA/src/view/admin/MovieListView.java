@@ -75,7 +75,7 @@ public class MovieListView extends ViewController {
 	 * @throws ClassNotFoundException
 	 */
 	private void listAllMovieMenu() throws IOException, ClassNotFoundException {
-		ArrayList<Movie> movieList = MovieListingController.listAllMovie();
+		ArrayList<Movie> movieList = MovieListingController.getAllMovie();
 		if(movieList.size() == 0)
 			System.out.println("There is no movie yet!");
 		else {
@@ -132,7 +132,7 @@ public class MovieListView extends ViewController {
 	 * @throws ClassNotFoundException
 	 */
 	private void viewMovieDetailsMenu() throws IOException, ClassNotFoundException {
-		ArrayList<Movie> movieList = MovieListingController.listAllMovie();
+		ArrayList<Movie> movieList = MovieListingController.getAllMovie();
 		printTitle("View movie details");
 		listAllMovieMenu();
 		System.out.println("Please enter the index number of the movie you want to view details\n" +
@@ -142,7 +142,15 @@ public class MovieListView extends ViewController {
 			return;
 		else {
 			System.out.println("Title: " + movieList.get(choice - 1).getMovieTitle());
-			System.out.println("Showing Status: " + movieList.get(choice - 1).getShowingStatus());
+            System.out.print("Showing Status: ");
+            if(movieList.get(choice - 1).getShowingStatus() == 1)
+                System.out.println("Coming Soon");
+            else if(movieList.get(choice - 1).getShowingStatus() == 2)
+                System.out.println("Preview");
+            else if(movieList.get(choice - 1).getShowingStatus() == 3)
+                System.out.println("Now Showing");
+            else if(movieList.get(choice - 1).getShowingStatus() == 4)
+                System.out.println("End of Showing");
 			System.out.println("Director: " + movieList.get(choice - 1).getDirector());
 			System.out.println("Sypnosis: " + movieList.get(choice - 1).getSypnosis());
 			System.out.println("Casts: " + movieList.get(choice - 1).getCast());
