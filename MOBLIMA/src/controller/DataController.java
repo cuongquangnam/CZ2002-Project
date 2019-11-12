@@ -5,7 +5,7 @@ import java.io.*;
 
 public class DataController {
 
-    public static Object readSerializedObject(String filename) throws IOException, ClassNotFoundException {
+    public static Object readSerializedObject(String filename) throws IOException {
         Object data;
         FileInputStream fileInputStream;
         ObjectInputStream objectInputStream;
@@ -14,7 +14,7 @@ public class DataController {
             objectInputStream = new ObjectInputStream(fileInputStream);
             data = objectInputStream.readObject();
             objectInputStream.close();
-        } catch (EOFException e) {
+        } catch (EOFException | ClassNotFoundException e) {
             return null;
         }
 

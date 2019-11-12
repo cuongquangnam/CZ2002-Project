@@ -1,5 +1,7 @@
 package controller;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -21,6 +23,24 @@ public class IOController {
         for(int i = 0; i < length; i++)
             System.out.print("-");
         System.out.println();
+    }
+    public static String breakLines(String string, int maxLineLength, int spaceLength) {
+        StringTokenizer token = new StringTokenizer(string, " ");
+        StringBuilder modifiedString = new StringBuilder(string.length());
+        int lineLength = 0;
+        while (token.hasMoreTokens()) {
+            String word = token.nextToken();
+
+            if (lineLength + word.length() > maxLineLength) {
+                modifiedString.append("\n");
+                for (int i = 0; i < spaceLength; i++)
+                    modifiedString.append(" ");
+                lineLength = 0;
+            }
+            modifiedString.append(word).append(" ");
+            lineLength += word.length();
+        }
+        return modifiedString.toString();
     }
     public static int getChoice(int i, int j) {
         Scanner sc = new Scanner(System.in);
@@ -117,5 +137,10 @@ public class IOController {
 
     public static String formatTimeMMddHHmm(Date time) {
         return new SimpleDateFormat("MM/dd HH:mm").format(time);
+    }
+
+    public static double round (double value, int precision) {
+        int scale = (int) Math.pow(10, precision);
+        return (double) Math.round(value * scale) / scale;
     }
 }

@@ -57,6 +57,17 @@ public class Movie implements Serializable {
 	public void setBlockBuster(boolean isBlockBuster) {
 		this.isBlockBuster = isBlockBuster;
 	}
+	public String getStringShowingStatus() {
+		if (showingStatus == 1)
+			return "Coming Soon";
+		else if (showingStatus == 2)
+			return "Preview";
+		else if (showingStatus == 3)
+			return "Now Showing";
+		else if (showingStatus == 4)
+			return "End of Showing";
+		return null;
+	}
 
 	
 	
@@ -109,8 +120,8 @@ public class Movie implements Serializable {
 	//to string
 	@Override
 	public String toString() {
-		return "Movie [movieTitle=" + movieTitle + ", showingStatus=" + showingStatus + ", sypnosis=" + sypnosis
-				+ ", director=" + director + ", cast=" + cast + "]";
+		return "Title: " + movieTitle + "\nShowing Status: " + this.getStringShowingStatus() + "\nDirector: " + director +
+				"\nSypnosis: " + sypnosis +"\nCast: " + cast + "\nBlockbuster: " + isBlockBuster + "\n";
 	}
 	
 	

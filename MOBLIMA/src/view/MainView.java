@@ -32,7 +32,7 @@ public class MainView extends ViewController {
                     changeView(this, new AdminView());
                     break;
                 case 3:
-                    System.out.println("Bye, hope to see you again!");
+                    System.out.println("See you again!");
                     deleteView();
                     break;
                 default:

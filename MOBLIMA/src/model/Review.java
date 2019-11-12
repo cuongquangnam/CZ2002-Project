@@ -1,7 +1,12 @@
 package model;
 
+import controller.DataController;
+
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * This class contains all information of one piece of review - including the
@@ -9,6 +14,19 @@ import java.util.Date;
  * name.
  */
 public class Review implements Serializable {
+    private static final String FILENAME_REVIEWLIST = "src/data/reviewListing.dat";
+    private static HashMap<Movie, ArrayList<Review>> reviewList;
+
+    static {
+        try {
+            reviewList = readReviewList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     private final Date date;
     private final int rating;
     private final String content;
@@ -75,6 +93,19 @@ public class Review implements Serializable {
      * @return the time when the review is made
      */
     public Date  getDate() { return date; }
+
+    public static HashMap<Movie, ArrayList<Review>> readReviewList() throws IOException, ClassNotFoundException {
+        if (DataController.readSerializedObject(FILENAME_REVIEWLIST) == null)
+            return new HashMap<>();
+        else
+            return (HashMap<Movie, ArrayList<Review>>) DataController.readSerializedObject(FILENAME_REVIEWLIST);
+    }
+
+    public static void writeReviewList(HashMap<Movie, ArrayList<Review>> reviewList) throws IOException {
+        DataController.writeSerializedObject(FILENAME_REVIEWLIST, reviewList);
+    }
+
+
 
 }
 

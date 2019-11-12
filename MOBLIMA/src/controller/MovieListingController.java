@@ -44,6 +44,15 @@ public class MovieListingController extends DataController{
 		addMovie(m);
 		writeSerializedObject(FILENAME_MOVIE, movieList);
 	}
+	public static ArrayList<Movie> getMovieByTitle(String title) throws IOException, ClassNotFoundException {
+		readMovieList();
+		ArrayList<Movie> searchResult = new ArrayList<>();
+		for (Movie movie: movieList) {
+			if (!title.equals("") && movie.getMovieTitle().toUpperCase().contains(title.toUpperCase()))
+				searchResult.add(movie);
+		}
+		return searchResult;
+	}
 
 	//Return all movie object in the file
 	public static ArrayList<Movie> getAllMovie() throws IOException, ClassNotFoundException {

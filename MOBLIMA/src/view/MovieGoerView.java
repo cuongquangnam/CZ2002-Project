@@ -21,31 +21,19 @@ public class MovieGoerView extends ViewController {
             printTitle("Moviegoer");
             System.out.println("Welcome, please make a selection:");
             System.out.println("1. Search or list movies");
-            System.out.println("2. View movie details");
-            System.out.println("3. Purchase ticket");
-            System.out.println("4. View booking history");
-            System.out.println("5. View Top 5 ranking movie");
-            System.out.println("6. Return");
+            System.out.println("2. View booking history");
+            System.out.println("3. Return");
 
-            int choice = getChoice(1,6);
+            int choice = getChoice(1,3);
 
             switch (choice) {
                 case 1:
                     changeView(this, new SearchListMovieView());
                     break;
                 case 2:
-                    changeView(this, new MovieDetailsView());
-                    break;
-                case 3:
-                    changeView(this, new PurchaseTicketView());
-                    break;
-                case 4:
                     changeView(this, new BookingHistoryView());
                     break;
-                case 5:
-                    changeView(this, new Top5View());
-                    break;
-                case 6:
+                case 3:
                     deleteView();
                     break;
                 default:

@@ -14,8 +14,6 @@ public class LoginService {
 			adminAccount = (HashMap<String, String>) DataController.readSerializedObject(FILENAME_ADMINACCOUNT);
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		}
 	}
 
