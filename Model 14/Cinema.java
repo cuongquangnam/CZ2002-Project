@@ -1,20 +1,28 @@
-package model;
+package com.models;
 
-public class Cinema {
+import java.io.Serializable;
 
+public class Cinema implements Serializable {
+	
 	private String cineplex;
 	private boolean is3D;
 	private boolean isPlatinum;
-	private String code;
-
-	public Cinema() {}
-	public Cinema(String cineplex, boolean is3D, boolean isPlatinum, String code) {
-		this.cineplex = cineplex;
-		this.is3D = is3D;
-		this.isPlatinum = isPlatinum;
-		this.code = code;
+	private String cinemaCode;
+	
+	
+	public Cinema()
+	{
+		
 	}
-
+	public Cinema(String cineplex, boolean b, boolean c, String cinemaCode)
+	{
+	    this.cineplex = cineplex;
+        this.is3D= b;
+        this.isPlatinum = c;
+        this.cinemaCode = cinemaCode;
+        
+    }
+	
 	public String getCineplex() {
 		return cineplex;
 	}
@@ -33,11 +41,16 @@ public class Cinema {
 	public void setPlatinum(boolean isPlatinum) {
 		this.isPlatinum = isPlatinum;
 	}
-	public String getCode() {
-		return code;
+	
+	public String getCinemaCode() {
+		return cinemaCode;
 	}
-	public void setCode(String code) {
-		this.code = code;
+	public void setCinemaCode(String cinemaCode) {
+		this.cinemaCode = cinemaCode;
 	}
+	
+	
+
+	
 
 }
