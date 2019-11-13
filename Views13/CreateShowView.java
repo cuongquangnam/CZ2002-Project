@@ -21,25 +21,8 @@ public class CreateShowView extends View {
 	public void start() {
 		
 		
-		
-		
-		try {
-			ArrayList <Movie> movieList = new ArrayList <Movie>();
-			movieList = FileReadWriteController.readMovieList();
-			for(Movie m: movieList)
-			{
-				System.out.println(m.getMovieTitle());
-			}
-			String movieTitle = IOController.readString("Enter the title of the movie to create a show for");
-			for (Movie m: movieList)
-			{
-				if(m.getMovieTitle() == movieTitle)
-					Movie m_main =m;
-			}
-		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			
+		String movieTitle = IOController.readString("Enter the title of the movie to create a show for");
 		
 		
 		
@@ -47,14 +30,21 @@ public class CreateShowView extends View {
 		int cinema_name = IOController.readChoice(1,3);
 	    
 		Cinema cin = ShowController.whichCinema(cineplex_name, cinema_name);
+		 
+		try {
+			Movie m = ShowController.whichMovie(movieTitle);
+			System.out.println("Hi5");
+			String time = IOController.readString("Enter the time of the show ");
+			
+			ShowController.createShow(time, cin, m, cineplex_name);
+			
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		System.out.println("HI");
 		
 		
-		
-		String time = IOController.readString("Enter the time of the show ");
-		
-		ShowController.createShow(time, cin, m_main, cineplex_name);
 		
 		
 		
