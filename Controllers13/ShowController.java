@@ -12,11 +12,10 @@ import com.models.Show;
 
 public class ShowController
 {
-	static  ArrayList<Show> movieShowList = new ArrayList <Show>();
-	public static void initialise() throws ClassNotFoundException, IOException
-	{
-	movieShowList = FileReadWriteController.readShowTime();
-	}
+	
+	
+	
+	
 	//static HashMap<String, ArrayList<Cinema>> cinemaList = FileReadWriteController.readCinemaList();
 	
 	
@@ -68,11 +67,25 @@ static HashMap<String, ArrayList <Cinema>> cinemaList =new HashMap<String, Array
 	
 	public static Cinema whichCinema (String cineplex_name, int cinema_name)
 	{
-		System.out.println("HI");
+		System.out.println("HI1");
 		ArrayList<Cinema> c = cinemaList.get(cineplex_name);
 		Cinema cin = c.get(cinema_name-1);
-		System.out.println("HI");
+		System.out.println("HI2");
 		return cin;
+		
+	}
+	
+	public static Movie whichMovie (String movieTitle) throws ClassNotFoundException, IOException
+	{
+		ArrayList <Movie> movieList = FileReadWriteController.readMovieList();
+		System.out.println("HI3");
+		for(Movie m: movieList)
+		{
+			if (m.getMovieTitle() == movieTitle)
+				System.out.println("HI4");
+				return m;
+		}
+		return null;
 		
 	}
 	
@@ -80,16 +93,28 @@ static HashMap<String, ArrayList <Cinema>> cinemaList =new HashMap<String, Array
 	
 	
 	
-	public static void createShow( String time, Cinema cinema, Movie movie, String cineplex)
+	
+	public static void createShow( String time, Cinema cinema, Movie movie, String cineplex) throws ClassNotFoundException, IOException
 	{
-		System.out.println("HI");
+		HashMap<Movie, ArrayList<Show>> movieShowList = FileReadWriteController.readShowTime();
+		
+		movieShowList.toString();
+		System.out.println("HI6");
 		Show show  = new Show(cineplex, movie, time, cinema);
 		System.out.println(show);
-		System.out.println("HI");
-		movieShowList.add(show);
-		for(Show s: movieShowList)
-			System.out.println(s);
-//		addShow(movie, show);
+		System.out.println("HI7");
+		ArrayList <Show> s =movieShowList.get(movie);
+		movieShowList.remove(movie);
+		movieShowList.toString();
+		s.add(show);
+		movieShowList.put(movie, s);
+		for (Movie name: movieShowList.keySet()){
+            String key = name.toString();
+            String value = movieShowList.get(name).toString();  
+            System.out.println(key + " " + value);  
+} 
+		System.out.println("this is the movieShowList");
+		
 		
 	}
 	
