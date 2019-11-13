@@ -79,6 +79,7 @@ public class NewBookingView extends View {
 				// Print the result!
 				System.out.println("Date and time of booking is: " + todayAsString);
 				String TID = shows.get(showChoice-1).getCinema().getCinemaCode();
+				TID = TID + todayAsString;       //New line added (14 NOV, 1:08 AM)
 		BookingandPaymentController.createNewBooking(today, movieList.get(movieChoice-1), shows.get(showChoice-1),bookSeats, TID, name, mobile, emailID); 
 		
 	} catch (ClassNotFoundException | IOException e) {
