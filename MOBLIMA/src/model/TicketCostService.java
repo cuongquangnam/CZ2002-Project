@@ -94,6 +94,9 @@ public class TicketCostService
 		}
 		if(show.getTime() == //enum class of holidays)
 			price += 5;
+		   
+		if(show.getTime().getDay() == 6 || show.getTime().getDay() == 7) 
+				price += 5;
 		
 		if(cinema.is3D() == true)
 			price += 5;
