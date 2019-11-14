@@ -95,11 +95,11 @@ public class ShowTimeView extends ViewController {
         int choice = IOController.getChoice(1, 4);
         switch (choice) {
             case 1:
-                displaySeat(showtime.getSeatMap());
+                changeView(this, new CheckSeat(showtime.getSeatMap()));
                 displayShowtimeDetailMenu(showtime);
                 break;
             case 2:
-                displaySeat(showtime.getSeatMap());
+                changeView(this, new CheckSeat(showtime.getSeatMap()));
 //                displayBookSeatMenu(showtime);
                 break;
             case 3:
@@ -109,19 +109,5 @@ public class ShowTimeView extends ViewController {
                 deleteView();
                 break;
         }
-    }
-    private void displaySeat(SeatMap seatMap) {
-        System.out.println("                    -------Screen------");
-        System.out.println("     1  2  3  4  5  6  7  8     9 10 11 12 13 14 15 16");
-        for (int row = 0; row <= 8; row++) {
-            System.out.print(row + 1 + "   ");
-            for (int col = 0; col <= 16; col++) {
-                if (seatMap.getSeats()[row][col] == null) System.out.print("   ");
-                else System.out.print(seatMap.getSeats()[row][col]);
-            }
-            System.out.println();
-        }
-        System.out.println();
-        getString("Press ENTER to continue:");
     }
 }
