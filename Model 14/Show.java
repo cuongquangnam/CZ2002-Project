@@ -1,81 +1,70 @@
-package com.models;
+package model;
 
 import java.io.Serializable;
 import java.util.Date;
 
+import static controller.IOController.formatTimeMMddHHmm;
+
 public class Show implements Serializable {
-	private String cineplex;
-	private Movie movie;
-	private Date dateTime;
-	private Cinema cinema;
-	private SeatMap seatmap;
-	
-	
+    private String cineplex;
+    private Movie movie;
+    private Date dateTime;
+    private Cinema cinema;
+    private SeatMap seatmap;
+
+    public Show()
+    {
+        seatmap = new SeatMap();
+    }
 
 
-	public Show()
-	{
-		
-	}
-	
-	
-	public Show(String cineplex, Movie movie, Date dateTime, Cinema cinema) {
-		super();
-		this.cineplex = cineplex;
-		this.movie = movie;
-		this.dateTime = dateTime;
-		this.cinema = cinema;
-	}
-	
-	
-	
-	public Movie getMovie() {
-		return movie;
-	}
-	public void setMovie(Movie movie) {
-		this.movie = movie;
-	}
-	public Date getTime() {
-		return dateTime;
-	}
-	public void setTime(Date time) {
-		this.dateTime = time;
-	}
-	public Cinema getCinema() {
-		return cinema;
-	}
-	public void setCinema(Cinema cinema) {
-		this.cinema = cinema;
-	}
-	public String getCineplex() {
-		return cineplex;
-		
-	}
+    public Show(String cineplex, Movie movie, Date dateTime, Cinema cinema) {
+        super();
+        this.cineplex = cineplex;
+        this.movie = movie;
+        this.dateTime = dateTime;
+        this.cinema = cinema;
+        this.seatmap = new SeatMap();
+    }
 
 
-	public SeatMap getSeatmap() {
-		return seatmap;
-	}
+
+    public Movie getMovie() {
+        return movie;
+    }
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+    public Date getTime() {
+        return dateTime;
+    }
+    public void setTime(Date time) {
+        this.dateTime = time;
+    }
+    public Cinema getCinema() {
+        return cinema;
+    }
+    public void setCinema(Cinema cinema) {
+        this.cinema = cinema;
+    }
+    public String getCineplex() {
+        return cineplex;
+    }
 
 
-	public void setSeatmap(SeatMap seatmap) {
-		this.seatmap = seatmap;
-	}
+    public void setCineplex(String cineplex) {
+        this.cineplex = cineplex;
+    }
+    public SeatMap getSeatMap()  {
+        return seatmap;
+    }
+
+    @Override
+    public String toString() {
+        return cinema.getCineplex() + ": " + formatTimeMMddHHmm(dateTime);
+    }
 
 
-	public void setCineplex(String cineplex) {
-		cineplex = cineplex;
-	}
 
-
-	@Override
-	public String toString() {
-		return "Show [cineplex=" + cineplex + ", movie=" + movie + ", dateTime=" + dateTime + ", cinema=" + cinema
-				+ ", seatmap=" + seatmap + "]";
-	}
-	
-	
-
-	
 
 }
