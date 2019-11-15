@@ -1,13 +1,21 @@
 package controller;
-import model.*;
+
+import model.Movie;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
-import static controller.FileReadWriteController.readMovieList;
-
-public class MovieListingController extends DataController{
+public class MovieListingController{
 	private static ArrayList <Movie> movieList;
+
+	static {
+		try {
+			movieList = FileReadWriteController.readMovieList();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static Movie search(ArrayList<Movie> movieList, String movieTitle)
 	{
@@ -25,14 +33,6 @@ public class MovieListingController extends DataController{
 	{
 		Movie m = search(movieList, omovieTitle);
 
-		try {
-			movieList = readMovieList();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
 		movieList.remove(m);
 		m.setMovieTitle(nmovieTitle);
 		movieList.add(m);
@@ -48,14 +48,6 @@ public class MovieListingController extends DataController{
 	{
 		Movie m = search(movieList, omovieTitle);
 
-		try {
-			movieList = readMovieList();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
 		movieList.remove(m);
 		m.setShowingStatus(nshowingStatus);
 		movieList.add(m);
@@ -70,14 +62,6 @@ public class MovieListingController extends DataController{
 	public static void updateSypnosis(String omovieTitle, String nsypnosis)
 	{
 		Movie m = search(movieList, omovieTitle);
-
-		try {
-			movieList = readMovieList();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
 
 		movieList.remove(m);
 		m.setSypnosis(nsypnosis);
@@ -95,14 +79,6 @@ public class MovieListingController extends DataController{
 	{
 		Movie m = search(movieList, omovieTitle);
 
-		try {
-			movieList = readMovieList();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
 		movieList.remove(m);
 		m.setDirector(ndirector);
 		movieList.add(m);
@@ -119,14 +95,6 @@ public class MovieListingController extends DataController{
 	{
 		Movie m = search(movieList, omovieTitle);
 
-		try {
-			movieList = readMovieList();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
 		movieList.remove(m);
 		m.setCast(ncast);
 		movieList.add(m);
@@ -142,14 +110,6 @@ public class MovieListingController extends DataController{
 	{
 		Movie m = search(movieList, omovieTitle);
 
-		try {
-			movieList = readMovieList();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
 		movieList.remove(m);
 		m.setBlockBuster(nisBlockbuster);
 		movieList.add(m);
@@ -161,15 +121,23 @@ public class MovieListingController extends DataController{
 		}
 	}
 
-	public static void deleteMovie(String movieTitle)
+	public static void updateBasePrice(String omovieTitle, double nBasePrice)
 	{
+		Movie m = search(movieList, omovieTitle);
+
+		movieList.remove(m);
+		m.setBasePrice(nBasePrice);
+		movieList.add(m);
+
 		try {
-			movieList = readMovieList();
+			FileReadWriteController.writeMovieList(movieList);
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		}
+	}
+
+	public static void deleteMovie(String movieTitle)
+	{
 
 		Movie m = search(movieList, movieTitle);
 		m.setShowingStatus(4);
@@ -182,7 +150,7 @@ public class MovieListingController extends DataController{
 	}
 
 	
-	public static void createNewMovie(String movieTitle, int showingStatus, String sypnosis, String director, ArrayList<String> cast, double basePrice, boolean isBlockBuster) throws IOException, ClassNotFoundException {
+	public static void createNewMovie(String movieTitle, int showingStatus, String sypnosis, String director, ArrayList<String> cast, double basePrice, boolean isBlockBuster) throws IOException{
 		Movie m = new Movie();
 		m.setMovieTitle(movieTitle);
 		m.setShowingStatus(showingStatus);
@@ -191,12 +159,10 @@ public class MovieListingController extends DataController{
 		m.setCast(cast);
 		m.setBasePrice(basePrice);
 		m.setBlockBuster(isBlockBuster);
-		movieList = readMovieList();
 		movieList.add(m);
 		FileReadWriteController.writeMovieList(movieList);
 	}
-	public static ArrayList<Movie> getMovieByTitle(String title) throws IOException, ClassNotFoundException {
-		movieList = readMovieList();
+	public static ArrayList<Movie> getMovieByTitle(String title){
 		ArrayList<Movie> searchResult = new ArrayList<>();
 		for (Movie movie: movieList) {
 			if (!title.equals("") && movie.getMovieTitle().toUpperCase().contains(title.toUpperCase()))
@@ -204,14 +170,28 @@ public class MovieListingController extends DataController{
 		}
 		return searchResult;
 	}
+	public static void updateSales(Movie movie, int ticket) {
+		Movie m = search(movieList, movie.getMovieTitle());
+
+		movieList.remove(m);
+		int sales = m.getSales() + ticket;
+		m.setSales(sales);
+		movieList.add(m);
+
+		try {
+			FileReadWriteController.writeMovieList(movieList);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	//Return all movie object in the file
-	public static ArrayList<Movie> getAllMovie() throws IOException, ClassNotFoundException {
-		movieList = readMovieList();
+	public static ArrayList<Movie> getAllMovie(){
 		return movieList;
 	}
 
-	public static ArrayList<Movie> getTop5MovieListing(String orderBy) throws IOException, ClassNotFoundException {
+	public static ArrayList<Movie> getTop5MovieListing(String orderBy){
 		ArrayList<Movie> top5 = new ArrayList<>();
 		ArrayList<Movie> movieListing = getAllMovie();
 		for (Movie movie : movieListing) {
@@ -223,7 +203,7 @@ public class MovieListingController extends DataController{
 			Collections.sort(top5, (o1, o2) -> Double.compare(ReviewController.getMovieRating(o2), ReviewController.getMovieRating(o1)));
 		}
 		else if(orderBy.equals("Sales")){  // order by ticket sales
-//			Collections.sort(top5, (o1, o2) -> Integer.compare(o2.getSales(), o1.getSales()));
+			Collections.sort(top5, (o1, o2) -> Integer.compare(o2.getSales(), o1.getSales()));
 		}
 
 		while (top5.size() > 5) {
@@ -232,10 +212,4 @@ public class MovieListingController extends DataController{
 
 		return top5;
 	}
-
-	//If choice ==1; addMovie()
-	//If choice ==2; updateMovie()
-	//If choice ==3; deleteMovie()
-	
-
 }

@@ -15,8 +15,6 @@ public class ReviewController {
             reviewList = FileReadWriteController.readReviewList();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
