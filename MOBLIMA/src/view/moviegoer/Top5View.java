@@ -26,10 +26,8 @@ public class Top5View extends ViewController {
 
     /**
      * This method shows the main menu of this view
-     * @throws IOException
-     * @throws ClassNotFoundException
      */
-    private void displayMenu() throws IOException, ClassNotFoundException {
+    private void displayMenu(){
             switch (choice) {
                 case 1:
                     rankingBySales();
@@ -48,12 +46,18 @@ public class Top5View extends ViewController {
      */
     private void rankingBySales() {
         IOController.printTitle("Top 5 Movies By Ticket Sales");
+        ArrayList<Movie> movieList = MovieListingController.getTop5MovieListing("Sales");
+        int i = 1;
+        for(Movie movie : movieList) {
+            System.out.println(i + ". " + movie.getMovieTitle() + "   (" + movie.getStringShowingStatus() + ")   [Sales: " + movie.getSales() + "]");
+            i++;
+        }
     }
 
     /**
      * This method shows the top 5 movies ranking by overall rating
      */
-    private void rankingByRating() throws IOException, ClassNotFoundException {
+    private void rankingByRating(){
         IOController.printTitle("Top 5 Movies By Overall Rating");
         ArrayList<Movie> movieList = MovieListingController.getTop5MovieListing("Rating");
         int i = 1;

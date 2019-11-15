@@ -15,6 +15,12 @@ import static controller.IOController.*;
  * This class is used to display the menu of list all movies
  */
 public class ListAllMovieView extends ViewController {
+
+    /**
+     * {@inheritDoc}
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void initialize() throws IOException, ClassNotFoundException {
         displayMenu();
     }
@@ -71,7 +77,7 @@ public class ListAllMovieView extends ViewController {
 
     /**
      * This method is used to show different options after select a movie
-     * @param m
+     * @param m A Movie Object
      * @throws IOException
      * @throws ClassNotFoundException
      */

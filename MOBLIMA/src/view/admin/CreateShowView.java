@@ -45,13 +45,9 @@ public class CreateShowView extends ViewController {
         System.out.println("1. Cineplex A");
         System.out.println("2. Cineplex B");
         System.out.println("3. Cineplex C");
-        System.out.println("Please enter the index number of the cineplex you want to create show in\n" +
-                "Enter 0 to go back");
-        choice = getChoice(0, 3);
+        System.out.println("Please enter the index number of the cineplex you want to create show in");
+        choice = getChoice(1, 3);
         switch (choice) {
-            case 0:
-                deleteView();
-                break;
             case 1:
                 cineplex_name = "Cineplex A";
                 break;
@@ -66,16 +62,12 @@ public class CreateShowView extends ViewController {
         System.out.println("List of cinemas in " + cineplex_name + ":");
         int index = 1;
         for(Cinema c: cinemaList) {
-            System.out.println(index + ". " + c.getCinemaCode());
+            System.out.println(index + ". " + c.getCinemaCode() + "   (3D: " + c.is3D() + ", Platinum: " + c.isPlatinum() + ")");
             index++;
         }
-        System.out.println("Please enter the index number of the cinema you want to create show in\n" +
-                "Enter 0 to go back");
-        choice = getChoice(0, cinemaList.size());
-        if(choice == 0)
-            return;
-        else
-            cinema = cinemaList.get(choice - 1);
+        System.out.println("Please enter the index number of the cinema you want to create show in");
+        choice = getChoice(1, cinemaList.size());
+        cinema = cinemaList.get(choice - 1);
 
         Date time = IOController.readTimeMMddHHmm("Enter the time for the show",
                 "Format: MM-DD HH:MM (e.g. 12-25 09:30)");
@@ -85,7 +77,6 @@ public class CreateShowView extends ViewController {
                             "Cineplex: " + cineplex_name +
                             "\nCinema: " + cinema.getCinemaCode() +
                             "\nTime: " + formatTimeMMddHHmm(time));
-        System.out.println("Press ENTER to return");
-        getString();
+        getString("Press ENTER to return");
     }
 }

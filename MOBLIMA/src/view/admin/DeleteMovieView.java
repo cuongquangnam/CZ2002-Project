@@ -46,6 +46,5 @@ public class DeleteMovieView extends ViewController {
         MovieListingController.deleteMovie(movieTitle);
         System.out.println("Successfully delete movie!");
         getString("Press ENTER to continue");
-        return;
     }
 }

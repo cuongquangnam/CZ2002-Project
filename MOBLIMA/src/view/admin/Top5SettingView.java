@@ -25,9 +25,13 @@ public class Top5SettingView extends ViewController {
             switch (choice) {
                 case 1:
                     Top5View.choice = 1;
+                    System.out.println("Top 5 movies is now ranked by ticket sales!");
+                    IOController.getString("Press ENTER to return");
                     break;
                 case 2:
                     Top5View.choice = 2;
+                    System.out.println("Top 5 movies is now ranked by overall rating!");
+                    IOController.getString("Press ENTER to return");
                     break;
                 case 3:
                     return;

@@ -8,7 +8,7 @@ import model.Movie;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static controller.IOController.getChoice;
+import static controller.IOController.*;
 
 public class UpdateMovieView extends ViewController {
     @Override
@@ -16,7 +16,7 @@ public class UpdateMovieView extends ViewController {
         displayMenu();
     }
 
-    private void displayMenu() throws IOException, ClassNotFoundException {
+    private void displayMenu(){
         IOController.printTitle("Edit movie listing");
 
         Movie movie = new Movie();
@@ -47,7 +47,8 @@ public class UpdateMovieView extends ViewController {
         System.out.println("4. Director");
         System.out.println("5. Cast");
         System.out.println("6. Blockbuster or not");
-        choice = IOController.getChoice(1, 6);
+        System.out.println("7. Base price");
+        choice = IOController.getChoice(1, 7);
         switch(choice)
         {
             case 1:
@@ -55,6 +56,10 @@ public class UpdateMovieView extends ViewController {
                 MovieListingController.updateMovieTitle(movieTitle, nmovieTitle);
                 break;
             case 2:
+                System.out.println("Enter the showing status of the movie (1 - 3):");
+                System.out.println("1. Coming Soon");
+                System.out.println("2. Preview");
+                System.out.println("3. Now Showing");
                 int nshowingStatus = IOController.getChoice(1, 3);
                 MovieListingController.updateShowingStatus(movieTitle, nshowingStatus);
                 break;
@@ -81,6 +86,12 @@ public class UpdateMovieView extends ViewController {
                 boolean isBlockbuster = IOController.getBoolean("Enter true if the movie is block buster else enter false");
                 MovieListingController.updateIsBlockbuster(movieTitle, isBlockbuster);
                 break;
+            case 7:
+                double basePrice = getDouble("Please enter the base price of the movie");
+                MovieListingController.updateBasePrice(movieTitle, basePrice);
+                break;
         }
+        System.out.println("Successfully update movie!");
+        getString("Press ENTER to return");
     }
 }

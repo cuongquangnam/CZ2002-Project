@@ -55,7 +55,6 @@ public class CreateMovieView extends ViewController {
 
         MovieListingController.createNewMovie(movieTitle, showingStatus, sypnosis, director, cast, basePrice, isBlockBuster);
         System.out.println("A movie listing is created!");
-        getString("Press ENTER to continue");
-        deleteView();
+        getString("Press ENTER to return");
     }
 }

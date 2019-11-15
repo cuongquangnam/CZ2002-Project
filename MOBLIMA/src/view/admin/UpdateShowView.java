@@ -45,7 +45,7 @@ public class UpdateShowView extends ViewController {
             movie = movieList.get(choice - 1);
 
         HashMap<Movie, ArrayList<Show>> movieShowList = FileReadWriteController.readShowTime();
-        if(movieShowList.get(movie).size() == 0) {
+        if(movieShowList.get(movie) == null || movieShowList.get(movie).size() == 0) {
             System.out.println("There is no show for this movie");
             System.out.println("Press ENTER to return");
             getString();
@@ -119,7 +119,6 @@ public class UpdateShowView extends ViewController {
                 break;
         }
         System.out.println("Update show successfully!");
-        System.out.println("Press ENTER to return");
-        getString();
+        getString("Press ENTER to return");
     }
 }

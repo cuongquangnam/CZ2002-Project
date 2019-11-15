@@ -2,9 +2,9 @@ package view.moviegoer;
 
 import controller.FileReadWriteController;
 import controller.IOController;
+import controller.TicketPriceController;
 import controller.ViewController;
 import model.Movie;
-import model.SeatMap;
 import model.Show;
 
 import java.io.IOException;
@@ -24,6 +24,7 @@ public class ShowTimeView extends ViewController {
     }
 
     private void displayMenu() throws IOException, ClassNotFoundException {
+        printTitle("View showtimes");
         Date today = new Date();
         Date tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
         Date afterTomorrow = new Date(new Date().getTime() + 2* 24 * 60 * 60 * 1000);
@@ -66,7 +67,7 @@ public class ShowTimeView extends ViewController {
 
             int index = 0;
             for (Show s : showTimeList) {
-                System.out.println(++index + ": " + s);
+                System.out.println(++index + ": " + s + "  (3D: " + s.getCinema().is3D() + ", Platinum: " + s.getCinema().isPlatinum() + ")");
             }
 
             System.out.println("Please choose a showtime (enter 0 to go back):");
@@ -82,7 +83,18 @@ public class ShowTimeView extends ViewController {
         }
         else {
             System.out.println("You are not allowed to book this movie");
+            System.out.println("Press ENTER to go back");
+            getString();
         }
+    }
+    private void displayPrice(Show showTime) {
+        IOController.printTitle("Check price");
+        System.out.println("Base price of this movie: " + showTime.getMovie().getBasePrice());
+        System.out.println("Platinum cinema: " + showTime.getCinema().isPlatinum() + "   (+" + TicketPriceController.getPlatinumPrice() + " for each ticket if true)");
+        System.out.println("3D: " + showTime.getCinema().is3D() + "   (+"+ TicketPriceController.get3DPrice() + " for each ticket if true)");
+        System.out.println("Blockbuster: " + showTime.getMovie().isBlockBuster() + "   (+"+ TicketPriceController.getBlockBusterPrice() + " for each ticket if true)");
+        System.out.println("Senior: " + TicketPriceController.getSeniorPrice() + " for each ticket");
+        getString("Press ENTER to return");
     }
 
     private void displayShowtimeDetailMenu(Show showtime, int i_showtime) throws IOException, ClassNotFoundException {
@@ -103,7 +115,7 @@ public class ShowTimeView extends ViewController {
                 changeView(this, new BookingView(showtime, i_showtime));
                 break;
             case 3:
-//                displayPrice(showtime);
+                displayPrice(showtime);
                 break;
             case 4:
                 deleteView();

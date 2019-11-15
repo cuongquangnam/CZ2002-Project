@@ -41,7 +41,7 @@ public class MovieGoerView extends ViewController {
                     changeView(this, new SearchListMovieView());
                     break;
                 case 2:
-//                    changeView(this, new BookingHistoryView());
+                    changeView(this, new BookingHistoryView());
                     break;
                 case 3:
                     deleteView();

@@ -5,12 +5,12 @@ import controller.MovieListingController;
 import controller.ReviewController;
 import controller.ViewController;
 import model.Movie;
-import model.Review;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import static controller.IOController.getString;
+import static controller.IOController.printTitle;
 
 /**
  * This class shows the search movie by name menu
@@ -60,7 +60,10 @@ public class SearchMovieByNameView extends ViewController {
                 System.out.println("Press 0 to return");
                 int choice = IOController.getChoice(0, i);
                 if (choice == 0) deleteView();
-                else System.out.println(searchResult.get(choice - 1).toString());
+                else {
+                    printTitle("Movie details");
+                    System.out.println(searchResult.get(choice - 1).toString());
+                }
                 displayOptions(searchResult.get(choice - 1));
             }
         }

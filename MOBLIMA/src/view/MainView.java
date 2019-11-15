@@ -41,6 +41,7 @@ public class MainView extends ViewController {
                     break;
                 case 3:
                     System.out.println("See you again!");
+                    this.prevView = null;
                     deleteView();
                     break;
                 default:
