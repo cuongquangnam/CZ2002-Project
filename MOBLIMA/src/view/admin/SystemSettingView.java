@@ -25,7 +25,7 @@ public class SystemSettingView extends ViewController {
                     changeView(this, new Top5SettingView());
                     break;
                 case 2:
-                    //                configureHolidays();
+                    changeView(this, new HolidaySettingView());
                     break;
                 case 3:
                     changeView(this, new PriceModifierView());

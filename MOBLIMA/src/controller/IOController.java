@@ -200,6 +200,24 @@ public class IOController {
     }
 
     /**
+     * This method is read a {@code String} with format MM-dd from standard input and transform it to be a {@code Date}.
+     * @param message the message to be shown to the user
+     * @return the {@code Date} after formatting
+     */
+    public static Date readTimeMMdd(String... message) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            String input = getString(message);
+            input = new SimpleDateFormat("yyyy").format(new Date()) + "-" + input;  // set year as current year
+            Date date = simpleDateFormat.parse(input);
+            return date;
+        } catch (ParseException ex) {
+            System.out.println("Wrong format. Try again.");
+            return readTimeMMdd(message);
+        }
+    }
+
+    /**
      * This method formats a {@code Date} to a {@code String} with format YYYYMMddHHmm.
      * @param time The {@code Date} to be formatted
      * @return The {@code String} formatted

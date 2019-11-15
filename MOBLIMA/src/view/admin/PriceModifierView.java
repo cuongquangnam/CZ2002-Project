@@ -20,7 +20,8 @@ public class PriceModifierView extends ViewController {
             System.out.println("2. 3D: " + TicketPriceController.get3DPrice());
             System.out.println("3. Blockbuster: " + TicketPriceController.getBlockBusterPrice());
             System.out.println("4. Senior Ticket: " + TicketPriceController.getSeniorPrice());
-            //        System.out.println("5. Holiday (including weekends): " + TicketPriceController.getHolidayPrice());
+            System.out.println("5. Holiday: " + TicketPriceController.getHolidayPrice());
+            System.out.println("6. Weekend: " + TicketPriceController.getWeekendPrice());
             System.out.println("Select the modifier you want to edit. Press 0 to return");
             int choice = IOController.getChoice(0, 5);
 
@@ -43,9 +44,14 @@ public class PriceModifierView extends ViewController {
                     double priceSenior = IOController.getDouble("Input the new Senior Ticket price modifier");
                     TicketPriceController.setSeniorPrice(priceSenior);
                     break;
-//                case 5:
-//                    double priceHoliday = IOController.getDouble("Input the new Holiday price modifier");
-//                    TicketPriceController.setHolidayPrice(priceHoliday);
+                case 5:
+                    double priceHoliday = IOController.getDouble("Input the new Holiday price modifier");
+                    TicketPriceController.setHolidayPrice(priceHoliday);
+                    break;
+                case 6:
+                    double priceWeekend = IOController.getDouble("Input the new Weekend price modifier");
+                    TicketPriceController.setHolidayPrice(priceWeekend);
+                    break;
             }
             System.out.println("Successfully Modified!");
         }

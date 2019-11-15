@@ -5,6 +5,7 @@ import model.Movie;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class MovieListingController{
 	private static ArrayList <Movie> movieList;
@@ -33,9 +34,11 @@ public class MovieListingController{
 	{
 		Movie m = search(movieList, omovieTitle);
 
+		int index = movieList.indexOf(m);
 		movieList.remove(m);
 		m.setMovieTitle(nmovieTitle);
 		movieList.add(m);
+		movieList.add(index, m);
 
 		try {
 			FileReadWriteController.writeMovieList(movieList);
@@ -48,9 +51,10 @@ public class MovieListingController{
 	{
 		Movie m = search(movieList, omovieTitle);
 
+		int index = movieList.indexOf(m);
 		movieList.remove(m);
 		m.setShowingStatus(nshowingStatus);
-		movieList.add(m);
+		movieList.add(index, m);
 
 		try {
 			FileReadWriteController.writeMovieList(movieList);
@@ -63,9 +67,10 @@ public class MovieListingController{
 	{
 		Movie m = search(movieList, omovieTitle);
 
+		int index = movieList.indexOf(m);
 		movieList.remove(m);
 		m.setSypnosis(nsypnosis);
-		movieList.add(m);
+		movieList.add(index, m);
 
 		try {
 			FileReadWriteController.writeMovieList(movieList);
@@ -79,9 +84,10 @@ public class MovieListingController{
 	{
 		Movie m = search(movieList, omovieTitle);
 
+		int index = movieList.indexOf(m);
 		movieList.remove(m);
 		m.setDirector(ndirector);
-		movieList.add(m);
+		movieList.add(index, m);
 
 		try {
 			FileReadWriteController.writeMovieList(movieList);
@@ -95,9 +101,10 @@ public class MovieListingController{
 	{
 		Movie m = search(movieList, omovieTitle);
 
+		int index = movieList.indexOf(m);
 		movieList.remove(m);
 		m.setCast(ncast);
-		movieList.add(m);
+		movieList.add(index, m);
 
 		try {
 			FileReadWriteController.writeMovieList(movieList);
@@ -110,9 +117,10 @@ public class MovieListingController{
 	{
 		Movie m = search(movieList, omovieTitle);
 
+		int index = movieList.indexOf(m);
 		movieList.remove(m);
 		m.setBlockBuster(nisBlockbuster);
-		movieList.add(m);
+		movieList.add(index, m);
 
 		try {
 			FileReadWriteController.writeMovieList(movieList);
@@ -125,9 +133,10 @@ public class MovieListingController{
 	{
 		Movie m = search(movieList, omovieTitle);
 
+		int index = movieList.indexOf(m);
 		movieList.remove(m);
 		m.setBasePrice(nBasePrice);
-		movieList.add(m);
+		movieList.add(index, m);
 
 		try {
 			FileReadWriteController.writeMovieList(movieList);
@@ -140,7 +149,10 @@ public class MovieListingController{
 	{
 
 		Movie m = search(movieList, movieTitle);
+
+		movieList.remove(m);
 		m.setShowingStatus(4);
+		movieList.add(m);
 
 		try {
 			FileReadWriteController.writeMovieList(movieList);
@@ -173,10 +185,11 @@ public class MovieListingController{
 	public static void updateSales(Movie movie, int ticket) {
 		Movie m = search(movieList, movie.getMovieTitle());
 
+		int index = movieList.indexOf(m);
 		movieList.remove(m);
 		int sales = m.getSales() + ticket;
 		m.setSales(sales);
-		movieList.add(m);
+		movieList.add(index, m);
 
 		try {
 			FileReadWriteController.writeMovieList(movieList);
@@ -188,6 +201,12 @@ public class MovieListingController{
 
 	//Return all movie object in the file
 	public static ArrayList<Movie> getAllMovie(){
+		try {
+			movieList = FileReadWriteController.readMovieList();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Collections.sort(movieList, Comparator.comparingInt(Movie::getShowingStatus));
 		return movieList;
 	}
 

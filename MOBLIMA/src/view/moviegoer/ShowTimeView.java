@@ -12,17 +12,39 @@ import java.util.*;
 
 import static controller.IOController.*;
 
+/**
+ * This class handles the showtime display for the moviegoers
+ */
 public class ShowTimeView extends ViewController {
+
+    /**
+     * The movie that has its showtime viewed by user
+     */
     private Movie movie;
 
+    /**
+     * Constructor
+     * @param movie The movie that has its showtime viewed by user
+     */
     ShowTimeView(Movie movie) {
         this.movie = movie;
     }
+
+    /**
+     * {@inheritDoc}
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @Override
     public void initialize() throws IOException, ClassNotFoundException {
         displayMenu();
     }
 
+    /**
+     * This method displays the showtime menu to user
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private void displayMenu() throws IOException, ClassNotFoundException {
         printTitle("View showtimes");
         Date today = new Date();
@@ -87,6 +109,11 @@ public class ShowTimeView extends ViewController {
             getString();
         }
     }
+
+    /**
+     * This method displays the price of the movie checked by user
+     * @param showTime The showtime selected by user
+     */
     private void displayPrice(Show showTime) {
         IOController.printTitle("Check price");
         System.out.println("Base price of this movie: " + showTime.getMovie().getBasePrice());
@@ -94,9 +121,18 @@ public class ShowTimeView extends ViewController {
         System.out.println("3D: " + showTime.getCinema().is3D() + "   (+"+ TicketPriceController.get3DPrice() + " for each ticket if true)");
         System.out.println("Blockbuster: " + showTime.getMovie().isBlockBuster() + "   (+"+ TicketPriceController.getBlockBusterPrice() + " for each ticket if true)");
         System.out.println("Senior: " + TicketPriceController.getSeniorPrice() + " for each ticket");
+        System.out.println("Weekend: " + TicketPriceController.getWeekendPrice() + " for each ticket");
+        System.out.println("Holiday: " + TicketPriceController.getHolidayPrice() + " for each ticket");
         getString("Press ENTER to return");
     }
 
+    /**
+     * This method displays the options user can take after select a showtime
+     * @param showtime The showtime selected by user
+     * @param i_showtime Index of showtime selected by user in the list of the movie's showtime
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private void displayShowtimeDetailMenu(Show showtime, int i_showtime) throws IOException, ClassNotFoundException {
         printTitle(showtime.toString());
         System.out.println("1. Check seat availability");

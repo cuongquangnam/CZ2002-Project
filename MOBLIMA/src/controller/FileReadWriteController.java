@@ -3,10 +3,7 @@ package controller;
 import model.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
+import java.util.*;
 
 
 /**
@@ -39,6 +36,10 @@ public class FileReadWriteController {
      */
     static String FILENAME_TICKETPRICESETTING = "src/data/ticketPriceSetting.dat";
 
+    static String FILENAME_HOLIDAYLIST = "src/data/holidayList.dat";
+
+
+
 
     /**
      * List of bookings
@@ -64,6 +65,8 @@ public class FileReadWriteController {
      * List of price setting
      */
     static ArrayList<Double> priceSettingList = new ArrayList<Double>();
+
+    static ArrayList<Date> holidayList = new ArrayList<Date>();
 
 
 
@@ -148,6 +151,14 @@ public class FileReadWriteController {
         return priceSettingList;
     }
 
+    public static ArrayList <Date> readHolidayList() throws IOException{
+        if (DataController.readSerializedObject(FILENAME_HOLIDAYLIST) == null) holidayList = new ArrayList<>();
+        else {
+            holidayList = (ArrayList<Date>)DataController.readSerializedObject(FILENAME_HOLIDAYLIST);
+        }
+        return holidayList;
+    }
+
 
     /**
      * This method write the list of movies to file FILENAME_MOVIE
@@ -207,5 +218,10 @@ public class FileReadWriteController {
     public static void writePriceSetting(ArrayList <Double> priceSettingList) throws IOException
     {
         DataController.writeSerializedObject(FILENAME_TICKETPRICESETTING, priceSettingList);
+    }
+
+    public static void writeHolidayList(ArrayList <Date> holidayList) throws IOException
+    {
+        DataController.writeSerializedObject(FILENAME_HOLIDAYLIST, holidayList);
     }
 }

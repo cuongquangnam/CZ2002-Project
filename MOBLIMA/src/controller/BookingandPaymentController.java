@@ -43,14 +43,13 @@ public class BookingandPaymentController {
 
     /**
      * This method calculates the ticket price and return it
-     * @param movie The selected movie
      * @param seats The list of selected seats
      * @param show  The selected showtime
      * @param cinema The cinema showing
      * @return The price of ticket
      */
-    public static double calculateTicketPrice(Movie movie, ArrayList<Seat> seats, Show show, Cinema cinema) {
-        return TicketCostService.calculateTicketPriceSeat(movie, seats, show, cinema);
+    public static double calculateTicketPrice(ArrayList<Seat> seats, Show show, Cinema cinema) {
+        return TicketCostService.calculateTicketPriceSeat(seats, show, cinema);
     }
 
     /**

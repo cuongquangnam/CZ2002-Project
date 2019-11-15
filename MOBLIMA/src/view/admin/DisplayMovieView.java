@@ -37,7 +37,7 @@ public class DisplayMovieView extends ViewController {
             else if(movieList.get(choice - 1).getShowingStatus() == 4)
                 System.out.println("End of Showing");
             System.out.println("Director: " + movieList.get(choice - 1).getDirector());
-            System.out.println("Sypnosis: " + IOController.breakLines(movieList.get(choice - 1).getSypnosis(), 51, 10));
+            System.out.println("Synopsis: " + IOController.breakLines(movieList.get(choice - 1).getSypnosis(), 51, 10));
             System.out.println("Casts: " + movieList.get(choice - 1).getCast());
             System.out.println("Base Price: " + movieList.get(choice - 1).getBasePrice());
             System.out.println("Blockbuster: " + movieList.get(choice - 1).isBlockBuster());
@@ -46,7 +46,7 @@ public class DisplayMovieView extends ViewController {
         deleteView();
     }
 
-    private void listAllMovieMenu() throws IOException, ClassNotFoundException {
+    private void listAllMovieMenu(){
         ArrayList<Movie> movieList = MovieListingController.getAllMovie();
         if(movieList.size() == 0)
             System.out.println("There is no movie yet!");

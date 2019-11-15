@@ -45,7 +45,7 @@ public class Booking implements Serializable {
 				"Cinema: " + show.getCinema().getCinemaCode() + "\n" +
 				"Time: " + booking_dt + "\n";
 		for(int i = 0; i < seat.size(); i++) {
-			str += "Seat " + (i + 1) + ": Row " + (seat.get(i).getCol() + 1) + " Col " + ((seat.get(i).getCol() > 8) ? seat.get(i).getCol() : (seat.get(i).getCol() + 1)) + "\n";
+			str += "Seat " + (i + 1) + ": Row " + (seat.get(i).getRow() + 1) + " Col " + ((seat.get(i).getCol() > 8) ? seat.get(i).getCol() : (seat.get(i).getCol() + 1)) + "\n";
 		}
 		return str;
 	}

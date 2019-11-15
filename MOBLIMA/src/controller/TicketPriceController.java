@@ -34,10 +34,14 @@ public class TicketPriceController {
         priceSettingList = getPriceSettingList();
         return priceSettingList.get(3);
     }
-//    public static double getBlockBusterPrice() {
-//    priceSettingList = getPriceSettingList();
-//        return priceSettingList.get(0);
-//    }
+    public static double getHolidayPrice() {
+        priceSettingList = getPriceSettingList();
+        return priceSettingList.get(4);
+    }
+    public static double getWeekendPrice() {
+        priceSettingList = getPriceSettingList();
+        return priceSettingList.get(5);
+    }
 
     public static void setBlockBusterPrice(double price) {
         priceSettingList.set(0, price);
@@ -75,12 +79,21 @@ public class TicketPriceController {
         }
     }
 
-//    public static void setHolidayPrice(double price) {
-//        priceSettingList.set(4, price);
-//        try {
-//            FileReadWriteController.writePriceSetting(priceSettingList);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public static void setHolidayPrice(double price) {
+        priceSettingList.set(4, price);
+        try {
+            FileReadWriteController.writePriceSetting(priceSettingList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setWeekendPrice(double price) {
+        priceSettingList.set(5, price);
+        try {
+            FileReadWriteController.writePriceSetting(priceSettingList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

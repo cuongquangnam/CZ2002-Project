@@ -19,7 +19,7 @@ public class DeleteMovieView extends ViewController {
         displayMenu();
     }
 
-    private void displayMenu() throws IOException, ClassNotFoundException {
+    private void displayMenu(){
         printTitle("Delete movie listing");
 
         Movie movie = new Movie();

@@ -59,7 +59,7 @@ public class ShowController
     public static void updateSeatMap(Movie movie, int show_index, Show newShowTime) throws IOException
     {
         HashMap<Movie, ArrayList<Show>> movieShowList = FileReadWriteController.readShowTime();
-        ArrayList <Show> s =movieShowList.get(movie);
+        ArrayList <Show> s = movieShowList.get(movie);
         movieShowList.remove(movie, s);
         Show show = s.get(show_index);
         s.remove(show);

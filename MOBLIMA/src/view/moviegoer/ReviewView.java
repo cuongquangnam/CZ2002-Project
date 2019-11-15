@@ -17,7 +17,7 @@ public class ReviewView extends ViewController {
 
     /**
      * Allocates an {@code ReviewView} object and initializes it.
-     * @param movie
+     * @param movie The reviewed movie
      */
     public ReviewView(Movie movie) {
         this.movie = movie;

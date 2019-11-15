@@ -10,6 +10,9 @@ import java.util.Date;
 
 import static controller.IOController.*;
 
+/**
+ * This class handles the displayed menu when user
+ */
 public class PaymentView extends ViewController {
     private int i_showtime;
     private Show showTime;
@@ -43,12 +46,21 @@ public class PaymentView extends ViewController {
      * This method is to display the main menu of payment.
      */
     private void displayMenu() throws IOException, ClassNotFoundException {
+        ArrayList<Date> holidayList = null;
+
+        {
+            try {
+                holidayList = FileReadWriteController.readHolidayList();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         int senior = 0;
         for(int i = 0; i < bookSeats.size(); i++) {
             if(bookSeats.get(i).isSenior())
                 senior++;
         }
-        ticketPrice = BookingandPaymentController.calculateTicketPrice(showTime.getMovie(), bookSeats, showTime, showTime.getCinema());
+        ticketPrice = BookingandPaymentController.calculateTicketPrice(bookSeats, showTime, showTime.getCinema());
         GST = round((ticketPrice + 2) * 0.07, 2);
         totalPrice = round(ticketPrice + 2 + GST, 2);
         printTitle("Payment");
@@ -56,6 +68,8 @@ public class PaymentView extends ViewController {
         System.out.println("Platinum cinema: " + showTime.getCinema().isPlatinum() + "   (+" + TicketPriceController.getPlatinumPrice() + " for each ticket if true)");
         System.out.println("3D: " + showTime.getCinema().is3D() + "   (+"+ TicketPriceController.get3DPrice() + " for each ticket if true)");
         System.out.println("Blockbuster: " + showTime.getMovie().isBlockBuster() + "   (+"+ TicketPriceController.getBlockBusterPrice() + " for each ticket if true)");
+        System.out.println("Weekend: " + (showTime.getTime().getDay() == 6 || showTime.getTime().getDay() == 7)  + "   (+"+ TicketPriceController.getWeekendPrice() + " for each ticket if true)");
+        System.out.println("Holiday: " + HolidayController.checkHoliday(showTime.getTime()) + "   (+"+ TicketPriceController.getHolidayPrice() + " for each ticket if true)");
         System.out.println("Senior Ticket(s): " + senior + "   ("+ TicketPriceController.getSeniorPrice() + " for each ticket if true)");
         System.out.println("Number of Ticket(s): " + bookSeats.size());
         System.out.println("Base price of movie: " + showTime.getMovie().getBasePrice());
