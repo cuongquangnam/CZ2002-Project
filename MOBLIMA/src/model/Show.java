@@ -61,7 +61,7 @@ public class Show implements Serializable {
 
     @Override
     public String toString() {
-        return cinema.getCineplex() + ": " + formatTimeMMddHHmm(dateTime);
+        return cinema.getCineplex() + ", " + cinema.getCinemaCode() + " " + formatTimeMMddHHmm(dateTime);
     }
 
 

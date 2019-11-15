@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Booking {
+public class Booking implements Serializable {
 
 	private Date booking_dt;
 	private Movie movie;
@@ -13,8 +14,6 @@ public class Booking {
 	private String name;
 	private String mobileNumber;
 	private String emailID;
-	private boolean isSenior;
-
 
 	public Booking()
 	{
@@ -22,7 +21,7 @@ public class Booking {
 	}
 
 	public Booking(Date booking_dt, Movie movie, Show show, ArrayList <Seat> seat, String tID, String name,
-				   String mobileNumber, String emailID, boolean isSenior) {
+				   String mobileNumber, String emailID) {
 		super();
 		this.booking_dt = booking_dt;
 		this.movie = movie;
@@ -32,15 +31,23 @@ public class Booking {
 		this.name = name;
 		this.mobileNumber = mobileNumber;
 		this.emailID = emailID;
-		this.isSenior = isSenior;
 	}
 
 
 	@Override
 	public String toString() {
-		return "BookingAndPayment [booking_dt=" + booking_dt + ", movie=" + movie + ", show=" + show + ", seat=" + seat
-				+ ", TID=" + TID + ", name=" + name + ", mobileNumber=" + mobileNumber + ", emailID=" + emailID +
-				", isSenior=" + isSenior + "]";
+		String str = TID + "\n" +
+				"Name: " + name + "\n" +
+				"Mobile: " + mobileNumber + "\n" +
+				"Email: " + emailID + "\n" +
+				"Movie: " + movie.getMovieTitle() + "\n" +
+				"Cineplex: " + show.getCineplex() + "\n" +
+				"Cinema: " + show.getCinema().getCinemaCode() + "\n" +
+				"Time: " + booking_dt + "\n";
+		for(int i = 0; i < seat.size(); i++) {
+			str += "Seat " + (i + 1) + ": Row " + (seat.get(i).getCol() + 1) + " Col " + ((seat.get(i).getCol() > 8) ? seat.get(i).getCol() : (seat.get(i).getCol() + 1)) + "\n";
+		}
+		return str;
 	}
 	public Date getBooking_dt() {
 		return booking_dt;
@@ -89,11 +96,5 @@ public class Booking {
 	}
 	public void setEmailID(String emailID) {
 		this.emailID = emailID;
-	}
-	public boolean isSenior() {
-		return isSenior;
-	}
-	public void setSenior(boolean senior) {
-		isSenior = senior;
 	}
 }

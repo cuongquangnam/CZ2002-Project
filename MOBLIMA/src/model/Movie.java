@@ -13,10 +13,10 @@ public class Movie implements Serializable {
 	private ArrayList <String> cast;
 	private double basePrice;
 	private boolean isBlockBuster;
-//	private int sales;
+	private int sales;
 	
 	public Movie() {
-//		this.sales = 0;
+		this.sales = 0;
 	}
 	
 	public double getBasePrice() {
@@ -62,13 +62,13 @@ public class Movie implements Serializable {
 	public void setBlockBuster(boolean isBlockBuster) {
 		this.isBlockBuster = isBlockBuster;
 	}
-//	public int getSales() {
-//		return sales;
-//	}
-//
-//	public void setSales(int sales) {
-//		this.sales = sales;
-//	}
+	public int getSales() {
+		return sales;
+	}
+
+	public void setSales(int sales) {
+		this.sales = sales;
+	}
 	public String getStringShowingStatus() {
 		if (showingStatus == 1)
 			return "Coming Soon";

@@ -14,11 +14,11 @@ public class Cinema implements Serializable {
 	{
 
 	}
-	public Cinema(String cineplex, boolean b, boolean c, String cinemaCode)
+	public Cinema(String cineplex, boolean is3D, boolean isPlatinum, String cinemaCode)
 	{
 		this.cineplex = cineplex;
-		this.is3D= b;
-		this.isPlatinum = c;
+		this.is3D= is3D;
+		this.isPlatinum = isPlatinum;
 		this.cinemaCode = cinemaCode;
 
 	}

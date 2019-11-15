@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class Seat implements Serializable{
     private final int row;
     private final int col;
+    private boolean isSenior;
     private boolean booked;
 
     /**
@@ -20,13 +21,14 @@ public class Seat implements Serializable{
     public Seat(int row, int col) {
         this.row = row;
         this.col = col;
+        isSenior = false;
         booked = false;
     }
 
 
     /**
      * This method is to get column number.
-     * @return column number
+     * @return Column number
      */
     public int getCol() {
         return col;
@@ -34,7 +36,7 @@ public class Seat implements Serializable{
 
     /**
      * This method is to get row number.
-     * @return row number
+     * @return Row number
      */
     public int getRow() {
         return row;
@@ -48,6 +50,12 @@ public class Seat implements Serializable{
         return booked;
     }
 
+    public void setSenior() {
+        this.isSenior = true;
+    }
+    public boolean isSenior() {
+        return isSenior;
+    }
     /**
      * This method is to book the seat by setting {@code booked} as true
      */
