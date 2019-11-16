@@ -30,87 +30,87 @@ public class Review implements Serializable {
     /**
      * Date of review
      */
-    private final Date date;
+    private final Date DATE;
     /**
      * Rating given
      */
-    private final int rating;
+    private final int RATING;
     /**
      * The content of the review
      */
-    private final String content;
+    private final String CONTENT;
     /**
      * The reviewed movie
      */
-    private final Movie movie;
+    private final Movie MOVIE;
     /**
      * Name of reviewer
      */
-    private final String name;
+    private final String NAME;
 
     /**
      * The maximum rating the reviewer can give
      */
-    private static final int maxRating = 5;
+    private static final int MAXRATING = 5;
 
     /**
      * The minimum rating the reviewer can give
      */
-    private static final int minRating = 1;
+    private static final int MINRATING = 1;
 
     /**
      * Allocates a {@code Review} object and initializes it. The object is specified by the Movie being
-     * reviewed, rating, review content and name of the reviewer.
-     * @param movie The reviewed movie
-     * @param rating The rating reviewer gives
-     * @param content The content of the review
-     * @param name The name of reviewer
+     * reviewed, rating, review content and NAME of the reviewer.
+     * @param MOVIE The reviewed MOVIE
+     * @param RATING The RATING reviewer gives
+     * @param CONTENT The CONTENT of the review
+     * @param NAME The NAME of reviewer
      */
-    public Review(Movie movie, int rating, String content, String name) {
-        if(rating > maxRating) this.rating = maxRating;
-        else if (rating < minRating) this.rating = minRating;
-        else this.rating = rating;
+    public Review(Movie MOVIE, int RATING, String CONTENT, String NAME) {
+        if(RATING > MAXRATING) this.RATING = MAXRATING;
+        else if (RATING < MINRATING) this.RATING = MINRATING;
+        else this.RATING = RATING;
 
-        this.date = new Date();
-        this.content = content;
-        this.movie = movie;
-        this.name = name;
+        this.DATE = new Date();
+        this.CONTENT = CONTENT;
+        this.MOVIE = MOVIE;
+        this.NAME = NAME;
     }
 
     /**
      * This method is to get the {@code Movie} reviewed.
-     * @return The reviewed movie
+     * @return The reviewed MOVIE
      */
     public Movie getMovie() {
-        return movie;
+        return MOVIE;
     }
 
     /**
-     * This method is to get the content of the review.
-     * @return The content of the review
+     * This method is to get the CONTENT of the review.
+     * @return The CONTENT of the review
      */
     public String getContent() {
-        return content;
+        return CONTENT;
     }
 
     /**
-     * This method is to get the rating reviewer gives.
-     * @return The given rating
+     * This method is to get the RATING reviewer gives.
+     * @return The given RATING
      */
     public int getRating() {
-        return rating;
+        return RATING;
     }
 
     /**
-     * This method is to get the reviewer's name.
+     * This method is to get the reviewer's NAME.
      * @return Name of reviewer
      */
-    public String getName() { return name; }
+    public String getName() { return NAME; }
 
     /**
      * This method is to get the time when the review is made.
      * @return The time when the review is made
      */
-    public Date  getDate() { return date; }
+    public Date  getDate() { return DATE; }
 }
 
