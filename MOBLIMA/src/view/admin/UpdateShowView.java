@@ -36,7 +36,7 @@ public class UpdateShowView extends ViewController {
                 i++;
             }
         }
-        System.out.println("Please enter the index number of the movie you want to create show\n" +
+        System.out.println("Please enter the index number of the movie you want to edit show\n" +
                 "Enter 0 to go back");
         int choice = getChoice(0, movieList.size());
         if (choice == 0)
@@ -45,7 +45,13 @@ public class UpdateShowView extends ViewController {
             movie = movieList.get(choice - 1);
 
         HashMap<Movie, ArrayList<Show>> movieShowList = FileReadWriteController.readShowTime();
-        if(movieShowList.get(movie) == null || movieShowList.get(movie).size() == 0) {
+        if(movie.getShowingStatus() == 1 || movie.getShowingStatus() == 4) {
+            System.out.println("You are not allowed to set showtime for this movie");
+            System.out.println("Press ENTER to go back");
+            getString();
+            return;
+        }
+        else if(movieShowList.get(movie) == null || movieShowList.get(movie).size() == 0) {
             System.out.println("There is no show for this movie");
             System.out.println("Press ENTER to return");
             getString();

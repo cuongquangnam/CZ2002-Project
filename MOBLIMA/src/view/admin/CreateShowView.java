@@ -40,6 +40,12 @@ public class CreateShowView extends ViewController {
         else
             movie = movieList.get(choice - 1);
 
+        if(movie.getShowingStatus() == 1 || movie.getShowingStatus() == 4) {
+            System.out.println("You are not allowed to set showtime for this movie");
+            System.out.println("Press ENTER to go back");
+            getString();
+            return;
+        }
         IOController.printTitle("Create show for " + movie.getMovieTitle());
         System.out.println("List of cineplexes:");
         System.out.println("1. Cineplex A");

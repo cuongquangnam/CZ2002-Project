@@ -1,9 +1,6 @@
 package view.moviegoer;
 
-import controller.FileReadWriteController;
-import controller.IOController;
-import controller.TicketPriceController;
-import controller.ViewController;
+import controller.*;
 import model.Movie;
 import model.Show;
 
@@ -46,67 +43,69 @@ public class ShowTimeView extends ViewController {
      * @throws ClassNotFoundException
      */
     private void displayMenu() throws IOException, ClassNotFoundException {
-        printTitle("View showtimes");
-        Date today = new Date();
-        Date tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-        Date afterTomorrow = new Date(new Date().getTime() + 2* 24 * 60 * 60 * 1000);
-        Date dateChosen = null;
-        ArrayList<Show> showTimeList = new ArrayList<Show>();
+        while(true) {
+            printTitle("View showtimes");
+            Date today = new Date();
+            Date tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+            Date afterTomorrow = new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000);
+            Date dateChosen = null;
+            ArrayList<Show> showTimeList = new ArrayList<Show>();
 
-        if (movie.getShowingStatus() == 2 || movie.getShowingStatus() == 3) {
-            System.out.println("1. " + IOController.formatTimeMMdd(today) + " (today)");
-            System.out.println("2. " + IOController.formatTimeMMdd(tomorrow) + " (tomorrow)");
-            System.out.println("3. " + IOController.formatTimeMMdd(afterTomorrow) + " (after tomorrow)");
-            System.out.println("Please choose a date:");
-            switch (IOController.getChoice(1, 3)) {
-                case 1:
-                    dateChosen = today;
-                    break;
-                case 2:
-                    dateChosen = tomorrow;
-                    break;
-                default:
-                    dateChosen = afterTomorrow;
-                    break;
-            }
-            IOController.printTitle("Showtime on " + IOController.formatTimeMMdd(dateChosen));
-
-            HashMap<Movie, ArrayList<Show>> movieShowTime = FileReadWriteController.readShowTime();
-
-            if (movieShowTime.get(movie) != null && movieShowTime.get(movie).size() != 0) {
-                for (Show s : movieShowTime.get(movie)) {
-                    if (dateEquals(s.getTime(), dateChosen))
-                        showTimeList.add(s);
+            if (movie.getShowingStatus() == 2 || movie.getShowingStatus() == 3) {
+                System.out.println("1. " + IOController.formatTimeMMdd(today) + " (today)");
+                System.out.println("2. " + IOController.formatTimeMMdd(tomorrow) + " (tomorrow)");
+                System.out.println("3. " + IOController.formatTimeMMdd(afterTomorrow) + " (after tomorrow)");
+                System.out.println("Please choose a date:");
+                switch (IOController.getChoice(1, 3)) {
+                    case 1:
+                        dateChosen = today;
+                        break;
+                    case 2:
+                        dateChosen = tomorrow;
+                        break;
+                    default:
+                        dateChosen = afterTomorrow;
+                        break;
                 }
-            }
+                IOController.printTitle("Showtime on " + IOController.formatTimeMMdd(dateChosen));
 
-            if (movieShowTime.get(movie) == null || showTimeList.isEmpty()) {
-                System.out.println("No showtime on that day.");
+                HashMap<Movie, ArrayList<Show>> movieShowTime = FileReadWriteController.readShowTime();
+
+                if (movieShowTime.get(movie) != null && movieShowTime.get(movie).size() != 0) {
+                    for (Show s : movieShowTime.get(movie)) {
+                        if (dateEquals(s.getTime(), dateChosen))
+                            showTimeList.add(s);
+                    }
+                }
+
+                if (movieShowTime.get(movie) == null || showTimeList.isEmpty()) {
+                    System.out.println("No showtime on that day.");
+                    System.out.println("Press ENTER to go back");
+                    getString();
+                    return;
+                }
+
+                int index = 0;
+                for (Show s : showTimeList) {
+                    System.out.println(++index + ": " + s + "  (3D: " + s.getCinema().is3D() + ", Platinum: " + s.getCinema().isPlatinum() + ")");
+                }
+
+                System.out.println("Please choose a showtime (enter 0 to go back):");
+
+                System.out.println();
+                int choice = getChoice(0, showTimeList.size());
+                if (choice == 0) {
+                    return;
+                }
+
+                Show showtime = showTimeList.get(choice - 1);
+                displayShowtimeDetailMenu(showtime, choice - 1);
+            } else {
+                System.out.println("You are not allowed to book this movie");
                 System.out.println("Press ENTER to go back");
                 getString();
                 return;
             }
-
-            int index = 0;
-            for (Show s : showTimeList) {
-                System.out.println(++index + ": " + s + "  (3D: " + s.getCinema().is3D() + ", Platinum: " + s.getCinema().isPlatinum() + ")");
-            }
-
-            System.out.println("Please choose a showtime (enter 0 to go back):");
-
-            System.out.println();
-            int choice = getChoice(0, showTimeList.size());
-            if (choice == 0) {
-                return;
-            }
-
-            Show showtime = showTimeList.get(choice - 1);
-            displayShowtimeDetailMenu(showtime, choice - 1);
-        }
-        else {
-            System.out.println("You are not allowed to book this movie");
-            System.out.println("Press ENTER to go back");
-            getString();
         }
     }
 
@@ -120,9 +119,9 @@ public class ShowTimeView extends ViewController {
         System.out.println("Platinum cinema: " + showTime.getCinema().isPlatinum() + "   (+" + TicketPriceController.getPlatinumPrice() + " for each ticket if true)");
         System.out.println("3D: " + showTime.getCinema().is3D() + "   (+"+ TicketPriceController.get3DPrice() + " for each ticket if true)");
         System.out.println("Blockbuster: " + showTime.getMovie().isBlockBuster() + "   (+"+ TicketPriceController.getBlockBusterPrice() + " for each ticket if true)");
-        System.out.println("Senior: " + TicketPriceController.getSeniorPrice() + " for each ticket");
-        System.out.println("Weekend: " + TicketPriceController.getWeekendPrice() + " for each ticket");
-        System.out.println("Holiday: " + TicketPriceController.getHolidayPrice() + " for each ticket");
+        System.out.println("Weekend: " + (showTime.getTime().getDay() == 6 || showTime.getTime().getDay() == 0) + "   (+" + TicketPriceController.getWeekendPrice() + " for each ticket if true)");
+        System.out.println("Holiday: " + HolidayController.checkHoliday(showTime.getTime()) + "   (+"+ TicketPriceController.getHolidayPrice() + " for each ticket if true)");
+        System.out.println("Senior: " + TicketPriceController.getSeniorPrice() + " for each ticket if ticket belongs to senior");
         getString("Press ENTER to return");
     }
 
