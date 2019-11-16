@@ -13,11 +13,19 @@ import java.util.HashMap;
 import static controller.IOController.*;
 
 public class UpdateShowView extends ViewController {
+    //View to guide the user through the process of updating a show of a movie, provide legitimate inputs and provide feedback
+    /**
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @Override
     public void initialize() throws IOException, ClassNotFoundException {
         displayMenu();
     }
-
+/**
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private void displayMenu() throws IOException, ClassNotFoundException {
         IOController.printTitle("Edit a show");
         int show_index = 0;
