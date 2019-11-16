@@ -2,8 +2,14 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * This class contains all information of the cinema
+ */
 public class Cinema implements Serializable {
 
+	/**
+	 * The cineplex the movie belongs to
+	 */
 	private String cineplex;
 	private boolean is3D;
 	private boolean isPlatinum;

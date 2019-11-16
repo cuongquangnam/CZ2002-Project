@@ -1,8 +1,20 @@
 package model;
 
+/**
+ * This class contains information on the customer
+ */
 public class Customer {
+	/**
+	 * Name of customer
+	 */
 	private String name;
+	/**
+	 * Mobile phone of customer
+	 */
 	private String mobile;
+	/**
+	 * Email of
+	 */
 	private String email;
 	
 	public Customer (String name, String mobile, String email){

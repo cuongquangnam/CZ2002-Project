@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * This class
+ */
 public class Booking implements Serializable {
 
 	private Date booking_dt;
