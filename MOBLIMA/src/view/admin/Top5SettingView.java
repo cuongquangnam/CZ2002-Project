@@ -7,11 +7,13 @@ import view.moviegoer.Top5View;
 import java.io.IOException;
 
 public class Top5SettingView extends ViewController {
+    //View to help user choose how he would like to configure the top 5 movies.
+    
     @Override
     public void initialize() {
         displayMenu();
     }
-
+//Ranking by sales or by rating
     private void displayMenu() {
         while (true) {
             IOController.printTitle("View Top 5 Movies");
