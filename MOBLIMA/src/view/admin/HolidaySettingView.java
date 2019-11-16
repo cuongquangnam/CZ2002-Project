@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class HolidaySettingView extends ViewController {
+    //View to guide the user through the holioday configuration process, provide correct inputs and provide feedback to the user.
+    
     @Override
     public void initialize() throws IOException, ClassNotFoundException {
         displayMenu();
     }
-
+//Options available in holiday configuration
     private void displayMenu(){
         IOController.printTitle("Configure holidays");
         System.out.println("1. Add new holiday");
