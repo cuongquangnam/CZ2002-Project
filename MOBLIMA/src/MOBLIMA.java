@@ -1,11 +1,7 @@
-import controller.FileReadWriteController;
-import controller.TicketPriceController;
 import view.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
 
 /**
  * This class contains the main method of the program
