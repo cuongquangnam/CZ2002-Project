@@ -20,6 +20,12 @@ public class Cinema implements Serializable {
 	{
 
 	}
+	/**
+	 * @param cineplex		The cineplex the cinema belongs to.
+	 * @param is3D			If the cinema supports 3D movies
+	 * @param isPlatinum	If the cinema has platinum seats
+	 * @param cinemaCode	The code of the Cinema.
+	 */
 	public Cinema(String cineplex, boolean is3D, boolean isPlatinum, String cinemaCode)
 	{
 		this.cineplex = cineplex;
@@ -28,6 +34,9 @@ public class Cinema implements Serializable {
 		this.cinemaCode = cinemaCode;
 
 	}
+	
+	
+	//Getter and Setter methods for the attributes of the Cinema class.
 
 	public String getCineplex() {
 		return cineplex;
