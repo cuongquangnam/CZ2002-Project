@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import static controller.IOController.*;
 
 public class UpdateMovieView extends ViewController {
+    //view to guide the user through the process of updating any of the details related to a particualr movie, provide correct inputs and provide feedback
     @Override
     public void initialize() throws IOException, ClassNotFoundException {
         displayMenu();
