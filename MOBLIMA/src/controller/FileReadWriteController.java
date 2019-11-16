@@ -14,29 +14,29 @@ public class FileReadWriteController {
     /**
      * File path to store list of cinemas
      */
-    static String FILENAME_CINEMA = "src/data/cinemaList.dat";
+    static final String FILENAME_CINEMA = "src/data/cinemaList.dat";
     /**
      * File path to store showtime
      */
-    static String FILENAME_SHOWTIME = "src/data/movieShowTime.dat";
+    static final String FILENAME_SHOWTIME = "src/data/movieShowTime.dat";
     /**
      * File path to store list of movies
      */
-    static String FILENAME_MOVIE = "src/data/movieListing.dat";
+    static final String FILENAME_MOVIE = "src/data/movieListing.dat";
     /**
      * File path to store review
      */
-    static String FILENAME_REVIEWLIST = "src/data/reviewList.dat";
+    static final String FILENAME_REVIEWLIST = "src/data/reviewList.dat";
     /**
      * File path to store booking history
      */
-    static String FILENAME_BOOKINGHISTORY = "src/data/bookingHistory.dat";
+    static final String FILENAME_BOOKINGHISTORY = "src/data/bookingHistory.dat";
     /**
      * File path to store ticket price setting
      */
-    static String FILENAME_TICKETPRICESETTING = "src/data/ticketPriceSetting.dat";
+    static final String FILENAME_TICKETPRICESETTING = "src/data/ticketPriceSetting.dat";
 
-    static String FILENAME_HOLIDAYLIST = "src/data/holidayList.dat";
+    static final String FILENAME_HOLIDAYLIST = "src/data/holidayList.dat";
 
     /**
      * This method reads the list of movies from file FILENAME_MOVIE
