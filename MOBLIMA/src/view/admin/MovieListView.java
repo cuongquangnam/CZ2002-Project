@@ -7,7 +7,8 @@ import controller.ViewController;
 import static controller.IOController.*;
 
 public class MovieListView extends ViewController {
-
+//View to guide the user through  modifying the movie list process and provide correct input as to how the user would like to modify the list.
+	
 	public void initialize() throws IOException, ClassNotFoundException {
 		displayMenu();
 	}
@@ -17,6 +18,8 @@ public class MovieListView extends ViewController {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
+	
+	//Transfer control to the correct view which is designed to guide the user based on the choice of the user.
 	private void displayMenu() throws IOException, ClassNotFoundException {
 		while (true) {
 			printTitle("Modify movie listing");
