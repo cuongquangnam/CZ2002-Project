@@ -1,4 +1,4 @@
-package view.admin;
+ackage view.admin;
 
 import controller.MovieListingController;
 import controller.ViewController;
@@ -10,20 +10,27 @@ import static controller.IOController.*;
 import static controller.IOController.getBoolean;
 
 public class CreateMovieView extends ViewController {
+    
+	//View to to guide the user through the movie creation process and provide correct inputs.
+	
     @Override
     public void initialize() throws IOException, ClassNotFoundException {
         displayMenu();
     }
 
+    /**
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private void displayMenu() throws IOException, ClassNotFoundException {
-        String movieTitle;
-        int showingStatus;
-        String sypnosis;
-        String director;
-        ArrayList<String> cast = new ArrayList <String>();
-        String each_cast;
-        double basePrice;
-        boolean isBlockBuster;
+        String movieTitle; // To store the title of the new movie
+        int showingStatus; // To store the showing status of the new movie
+        String sypnosis; // To store the sypnosis of the new movie
+        String director; // To store the director of the new movie
+        ArrayList<String> cast = new ArrayList <String>(); // To store the list of cast of the new movie
+        String each_cast; // To store each cast of the new movie
+        double basePrice; // To store the base price of the new movie
+        boolean isBlockBuster; // To store if the new movie is a blockbuster.
 
         printTitle("Create movie listing");
 
