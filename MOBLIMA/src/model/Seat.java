@@ -7,9 +7,8 @@ import java.io.Serializable;
  * {@code Show} and whether it is booked
  */
 public class Seat implements Serializable{
-    private final int row;
-    private final int col;
-    private boolean isSenior;
+    private final int ROW;
+    private final int COL;
     private boolean booked;
 
     /**
@@ -18,9 +17,9 @@ public class Seat implements Serializable{
      * @param row This it the row number of the seat
      * @param col This is the column number of the seat
      */
-    public Seat(int row, int col) {
-        this.row = row;
-        this.col = col;
+    public Seat(int ROW, int COL) {
+        this.row = ROW;
+        this.col = COL;
         isSenior = false;
         booked = false;
     }
@@ -31,7 +30,7 @@ public class Seat implements Serializable{
      * @return Column number
      */
     public int getCol() {
-        return col;
+        return COL;
     }
 
     /**
@@ -39,7 +38,7 @@ public class Seat implements Serializable{
      * @return Row number
      */
     public int getRow() {
-        return row;
+        return ROW;
     }
 
     /**
@@ -50,12 +49,6 @@ public class Seat implements Serializable{
         return booked;
     }
 
-    public void setSenior() {
-        this.isSenior = true;
-    }
-    public boolean isSenior() {
-        return isSenior;
-    }
     /**
      * This method is to book the seat by setting {@code booked} as true
      */
