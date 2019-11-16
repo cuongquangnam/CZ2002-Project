@@ -18,7 +18,7 @@ public class MovieListingController{
 		}
 	}
 
-	public static Movie search(ArrayList<Movie> movieList, String movieTitle)
+	private static Movie search(ArrayList<Movie> movieList, String movieTitle)
 	{
 		for(Movie m : movieList)
 		{
