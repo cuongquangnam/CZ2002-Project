@@ -7,11 +7,22 @@ import controller.ViewController;
 import java.io.IOException;
 
 public class PriceModifierView extends ViewController {
+    
+    /**
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    //View to guide the user through changing the system configuration process with respect to how the Tickets price are affected based on various factors.
     @Override
     public void initialize() throws IOException, ClassNotFoundException {
         displayMenu();
     }
-
+    
+    /**
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    //Modifying the magnitude by which factors can affect the price of tickets for a movie
     private void displayMenu() {
         while(true) {
             IOController.printTitle("Modify ticket price");
