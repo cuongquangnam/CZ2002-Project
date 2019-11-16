@@ -6,7 +6,6 @@ import java.util.*;
 
 import controller.IOController;
 import controller.ViewController;
-import model.Customer;
 import model.Seat;
 import model.Show;
 
@@ -100,8 +99,7 @@ public class BookingView extends ViewController {
         // Print the result!
         System.out.println("Date and time of booking is: " + todayAsString);
         String TID = showTime.getCinema().getCinemaCode() + IOController.formatTimeYYYYMMddHHmm(today);
-        Customer customer = new Customer(name, mobile, emailID);
-        changeView(this, new PaymentView(customer, bookSeats, TID, showTime, i_showtime, today));
+        changeView(this, new PaymentView(name, mobile, emailID, bookSeats, TID, showTime, i_showtime, today));
 
     }
 }

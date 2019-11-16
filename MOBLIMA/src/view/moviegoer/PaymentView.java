@@ -27,9 +27,17 @@ public class PaymentView extends ViewController {
      */
     private ArrayList<Seat> bookSeats;
     /**
-     * The customer
+     * Name of customer
      */
-    private Customer customer;
+    private String name;
+    /**
+     * Mobile number of customer
+     */
+    private String mobile;
+    /**
+     * Email of customer
+     */
+    private String emailID;
     /**
      * The transaction ID
      */
@@ -61,15 +69,19 @@ public class PaymentView extends ViewController {
 
     /**
      * Constructor
-     * @param customer The customer
+     * @param name Name of customer
+     * @param mobile Mobile number of customer
+     * @param emailID Email of customer
      * @param bookSeats The booked seats
      * @param TID The transaction ID
      * @param showTime The show
      * @param i_showtime The index of the show in list
      * @param today The time of booking
      */
-    PaymentView(Customer customer, ArrayList<Seat> bookSeats, String TID, Show showTime, int i_showtime, Date today) {
-        this.customer = customer;
+    PaymentView(String name,String mobile,String emailID, ArrayList<Seat> bookSeats, String TID, Show showTime, int i_showtime, Date today) {
+        this.name = name;
+        this.mobile = mobile;
+        this.emailID = emailID;
         this.bookSeats = bookSeats;
         this.TID = TID;
         this.showTime = showTime;
@@ -138,8 +150,7 @@ public class PaymentView extends ViewController {
             showTime.getSeatMap().setSeat(seat);
         }
 
-        BookingandPaymentController.createNewBooking(today, showTime.getMovie(), showTime, bookSeats, TID, customer.getName(), customer.getMobile(),
-                customer.getEmail());
+        BookingandPaymentController.createNewBooking(today, showTime.getMovie(), showTime, bookSeats, TID, name, mobile, emailID);
         ShowController.updateSeatMap(showTime.getMovie(), i_showtime, showTime);
         MovieListingController.updateSales(showTime.getMovie(), bookSeats.size());
         System.out.println("Payment has been made. We wish you a great day!");
