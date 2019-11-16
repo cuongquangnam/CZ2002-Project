@@ -7,7 +7,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+/**
+ * This class handles the movie listing
+ */
 public class MovieListingController{
+	/**
+	 * List of movies
+	 */
 	private static ArrayList <Movie> movieList;
 
 	static {
@@ -18,6 +24,12 @@ public class MovieListingController{
 		}
 	}
 
+	/**
+	 * This method searchs for a movie in the list using the title
+	 * @param movieList The list of movies
+	 * @param movieTitle The title of movie that need to be searched for
+	 * @return The requested movie
+	 */
 	public static Movie search(ArrayList<Movie> movieList, String movieTitle)
 	{
 		for(Movie m : movieList)
@@ -29,7 +41,11 @@ public class MovieListingController{
 	}
 
 
-
+	/**
+	 * This method updates the movie title of movie
+	 * @param omovieTitle	Old title of movie
+	 * @param nmovieTitle	New title of movie
+	 */
 	public static void updateMovieTitle(String omovieTitle,String nmovieTitle)
 	{
 		Movie m = search(movieList, omovieTitle);
@@ -47,6 +63,11 @@ public class MovieListingController{
 		}
 	}
 
+	/**
+	 * This method updates the showing status of movie
+	 * @param omovieTitle Title of movie
+	 * @param nshowingStatus New showing status
+	 */
 	public static void updateShowingStatus(String omovieTitle, int nshowingStatus)
 	{
 		Movie m = search(movieList, omovieTitle);
@@ -63,6 +84,11 @@ public class MovieListingController{
 		}
 	}
 
+	/**
+	 * This method updates the synopsis of movie
+	 * @param omovieTitle Title of movie
+	 * @param nsypnosis New synopsis of movie
+	 */
 	public static void updateSypnosis(String omovieTitle, String nsypnosis)
 	{
 		Movie m = search(movieList, omovieTitle);
@@ -80,6 +106,11 @@ public class MovieListingController{
 	}
 
 
+	/**
+	 * This method updates the director of movie
+	 * @param omovieTitle Title of movie
+	 * @param ndirector New director of movie
+	 */
 	public static void updateDirector(String omovieTitle, String ndirector)
 	{
 		Movie m = search(movieList, omovieTitle);
@@ -96,7 +127,11 @@ public class MovieListingController{
 		}
 	}
 
-
+	/**
+	 * This method updates the cast of the movie
+	 * @param omovieTitle Title of movie
+	 * @param ncast New cast of movie
+	 */
 	public static void updateCast(String omovieTitle, ArrayList <String> ncast)
 	{
 		Movie m = search(movieList, omovieTitle);
@@ -113,6 +148,11 @@ public class MovieListingController{
 		}
 	}
 
+	/**
+	 * This method updates whether movie is blockbuster or not
+	 * @param omovieTitle Title of movie
+	 * @param nisBlockbuster New setting whether movie is blockbuster or not
+	 */
 	public static void updateIsBlockbuster(String omovieTitle, boolean nisBlockbuster)
 	{
 		Movie m = search(movieList, omovieTitle);
@@ -129,6 +169,11 @@ public class MovieListingController{
 		}
 	}
 
+	/**
+	 * This method updates the base price of movie
+	 * @param omovieTitle Title of movie
+	 * @param nBasePrice New base price of movie
+	 */
 	public static void updateBasePrice(String omovieTitle, double nBasePrice)
 	{
 		Movie m = search(movieList, omovieTitle);
@@ -145,6 +190,10 @@ public class MovieListingController{
 		}
 	}
 
+	/**
+	 * This method deletes movie from the list and write back to file
+	 * @param movieTitle The title of selected movie
+	 */
 	public static void deleteMovie(String movieTitle)
 	{
 
@@ -161,7 +210,17 @@ public class MovieListingController{
 		}
 	}
 
-	
+	/**
+	 * This method creates new movie
+	 * @param movieTitle Movie Title
+	 * @param showingStatus Showing Status of movie
+	 * @param sypnosis Synopsis of movie
+	 * @param director Director of movie
+	 * @param cast The cast of the movie
+	 * @param basePrice Base price of the movie
+	 * @param isBlockBuster Whether the movie is blockbuster or not
+	 * @throws IOException
+	 */
 	public static void createNewMovie(String movieTitle, int showingStatus, String sypnosis, String director, ArrayList<String> cast, double basePrice, boolean isBlockBuster) throws IOException{
 		Movie m = new Movie();
 		m.setMovieTitle(movieTitle);
@@ -174,6 +233,12 @@ public class MovieListingController{
 		movieList.add(m);
 		FileReadWriteController.writeMovieList(movieList);
 	}
+
+	/**
+	 * This method finds the movie by a string in title
+	 * @param title The string in title
+	 * @return The list of movies that have the string in their title
+	 */
 	public static ArrayList<Movie> getMovieByTitle(String title){
 		ArrayList<Movie> searchResult = new ArrayList<>();
 		for (Movie movie: movieList) {
@@ -182,6 +247,12 @@ public class MovieListingController{
 		}
 		return searchResult;
 	}
+
+	/**
+	 * This method updates the sales of a movie with each ticket sold
+	 * @param movie The movie to be updated
+	 * @param ticket The number of tickets sold
+	 */
 	public static void updateSales(Movie movie, int ticket) {
 		Movie m = search(movieList, movie.getMovieTitle());
 
@@ -199,7 +270,10 @@ public class MovieListingController{
 
 	}
 
-	//Return all movie object in the file
+	/**
+	 * This method returns all movie object in the file
+	 * @return The list of movie in file
+	 */
 	public static ArrayList<Movie> getAllMovie(){
 		try {
 			movieList = FileReadWriteController.readMovieList();
@@ -210,6 +284,11 @@ public class MovieListingController{
 		return movieList;
 	}
 
+	/**
+	 * This method returns the list of movie ordered by overall rating or sales in decreasing order
+	 * @param orderBy The way to ordered the movies
+	 * @return The list of ordered movies
+	 */
 	public static ArrayList<Movie> getTop5MovieListing(String orderBy){
 		ArrayList<Movie> top5 = new ArrayList<>();
 		ArrayList<Movie> movieListing = getAllMovie();

@@ -41,6 +41,35 @@ public class FileReadWriteController {
 
 
 
+    /**
+     * List of bookings
+     */
+    static ArrayList<Booking> bookingHistory = new ArrayList<Booking>() ;
+    /**
+     * List of movies
+     */
+    static ArrayList <Movie> movieList = new ArrayList <Movie>();
+    /**
+     * Hashmap of cineplexes name as key and list of cinema objects as value
+     */
+    static HashMap<String, ArrayList<Cinema>> cinemaList = new HashMap<String, ArrayList<Cinema>>();
+    /**
+     * Hashmap of Movie objects as key and list of Show objects as value
+     */
+    static HashMap<Movie, ArrayList<Show>> movieShowtime = new HashMap<Movie, ArrayList<Show>>();
+    /**
+     * Hashmap of Movie objects as key and list of Review objects as value
+     */
+    static HashMap<Movie, ArrayList<Review>> reviewList = new HashMap<Movie, ArrayList<Review>>();
+    /**
+     * List of price setting
+     */
+    static ArrayList<Double> priceSettingList = new ArrayList<Double>();
+    /**
+     * List of holiday
+     */
+    static ArrayList<Date> holidayList = new ArrayList<Date>();
+
 
 
     /**
@@ -49,7 +78,6 @@ public class FileReadWriteController {
      * @throws IOException when cannot find file
      */
     public static ArrayList <Movie> readMovieList() throws IOException{
-    	ArrayList <Movie> movieList;
         if (DataController.readSerializedObject(FILENAME_MOVIE) == null) movieList = new ArrayList<>();
         else {
             movieList = (ArrayList<Movie>)DataController.readSerializedObject(FILENAME_MOVIE);
@@ -66,8 +94,7 @@ public class FileReadWriteController {
      * @throws IOException when cannot find file
      */
     public static HashMap<String, ArrayList<Cinema>> readCinemaList() throws IOException{
-    	 HashMap<String, ArrayList<Cinema>> cinemaList;
-    	if (DataController.readSerializedObject(FILENAME_CINEMA) == null) cinemaList = new HashMap<>();
+        if (DataController.readSerializedObject(FILENAME_CINEMA) == null) cinemaList = new HashMap<>();
         else {
             cinemaList = (HashMap<String, ArrayList<Cinema>>)DataController.readSerializedObject(FILENAME_CINEMA);
         }
@@ -81,8 +108,7 @@ public class FileReadWriteController {
      * @throws IOException when cannot find file
      */
     public static HashMap<Movie, ArrayList<Show>> readShowTime() throws IOException{
-    	HashMap<Movie, ArrayList<Show>> movieShowtime;
-    	if (DataController.readSerializedObject(FILENAME_SHOWTIME) == null) movieShowtime = new HashMap<>();
+        if (DataController.readSerializedObject(FILENAME_SHOWTIME) == null) movieShowtime = new HashMap<>();
         else {
             movieShowtime = (HashMap<Movie, ArrayList<Show>>) DataController.readSerializedObject(FILENAME_SHOWTIME);
 
@@ -96,8 +122,7 @@ public class FileReadWriteController {
      * @throws IOException when cannot find file
      */
     public static HashMap<Movie, ArrayList<Review>> readReviewList() throws IOException{
-    	 HashMap<Movie, ArrayList<Review>> reviewList;
-    	if (DataController.readSerializedObject(FILENAME_REVIEWLIST) == null) reviewList = new HashMap<>();
+        if (DataController.readSerializedObject(FILENAME_REVIEWLIST) == null) reviewList = new HashMap<>();
         else
             reviewList =  (HashMap<Movie, ArrayList<Review>>) DataController.readSerializedObject(FILENAME_REVIEWLIST);
         return reviewList;
@@ -109,8 +134,7 @@ public class FileReadWriteController {
      * @throws IOException when cannot find file
      */
     public static ArrayList<Booking> readBookingHistory() throws IOException {
-    	ArrayList<Booking> bookingHistory;
-    	if (DataController.readSerializedObject(FILENAME_BOOKINGHISTORY) == null) bookingHistory = new ArrayList<Booking>();
+        if (DataController.readSerializedObject(FILENAME_BOOKINGHISTORY) == null) bookingHistory = new ArrayList<Booking>();
         else
             bookingHistory =  (ArrayList<Booking>) DataController.readSerializedObject(FILENAME_BOOKINGHISTORY);
         return bookingHistory;
@@ -122,17 +146,20 @@ public class FileReadWriteController {
      * @throws IOException when cannot find file
      */
     public static ArrayList <Double> readPriceSetting() throws IOException{
-    	ArrayList<Double> priceSettingList;
-    	if (DataController.readSerializedObject(FILENAME_TICKETPRICESETTING) == null) priceSettingList = new ArrayList<>();
+        if (DataController.readSerializedObject(FILENAME_TICKETPRICESETTING) == null) priceSettingList = new ArrayList<>();
         else {
             priceSettingList = (ArrayList<Double>)DataController.readSerializedObject(FILENAME_TICKETPRICESETTING);
         }
         return priceSettingList;
     }
 
+    /**
+     * This method reads the list of holiday setting from file FILENAME_HOLIDAYLIST
+     * @return List of holidays from file
+     * @throws IOException when cannot find file
+     */
     public static ArrayList <Date> readHolidayList() throws IOException{
-    	ArrayList<Date> holidayList;
-    	if (DataController.readSerializedObject(FILENAME_HOLIDAYLIST) == null) holidayList = new ArrayList<>();
+        if (DataController.readSerializedObject(FILENAME_HOLIDAYLIST) == null) holidayList = new ArrayList<>();
         else {
             holidayList = (ArrayList<Date>)DataController.readSerializedObject(FILENAME_HOLIDAYLIST);
         }
@@ -200,6 +227,11 @@ public class FileReadWriteController {
         DataController.writeSerializedObject(FILENAME_TICKETPRICESETTING, priceSettingList);
     }
 
+    /**
+     * This method write the list of holiday setting to file FILENAME_HOLIDAYLIST
+     * @param holidayList List of holidays
+     * @throws IOException when cannot find file
+     */
     public static void writeHolidayList(ArrayList <Date> holidayList) throws IOException
     {
         DataController.writeSerializedObject(FILENAME_HOLIDAYLIST, holidayList);
