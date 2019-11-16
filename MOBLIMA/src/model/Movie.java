@@ -10,44 +10,43 @@ import java.util.*;
  * This class contains all information on a movie
  */
 public class Movie implements Serializable {
-	/**
-	 * Title of movie
-	 */
+	
 	private String movieTitle;
-	/**
-	 * Showing status of movie
-	 */
 	private int showingStatus;
-	/**
-	 * Synopsis of movie
-	 */
 	private String sypnosis;
-	/**
-	 * Director of movie
-	 */
 	private String director;
-	/**
-	 * The cast of movie
-	 */
 	private ArrayList <String> cast;
-	/**
-	 * Base price of the movie
-	 */
 	private double basePrice;
-	/**
-	 * Whether movie is Blockbuster or not
-	 */
 	private boolean isBlockBuster;
-	/**
-	 * Sales of movie
-	 */
 	private int sales;
-
-	/**
-	 * Constructor
-	 */
+	
+	
+	
 	public Movie() {
 		this.sales = 0;
+	}
+	
+	/**
+	 * @param movieTitle	The title of the movie
+	 * @param showingStatus	The showing status of the movie.
+	 * @param sypnosis		The sypnosis of fthe movie.
+	 * @param director		The director of the movie
+	 * @param cast			The ArrayList of cast associated with the movie.
+	 * @param basePrice		The base Price of the movie.
+	 * @param isBlockBuster	The blockbustrer status of the movie.
+	 * @param sales			The sales of the movie.
+	 */
+	public Movie(String movieTitle, int showingStatus, String sypnosis, String director, ArrayList<String> cast,
+			double basePrice, boolean isBlockBuster, int sales) {
+		super();
+		this.movieTitle = movieTitle;
+		this.showingStatus = showingStatus;
+		this.sypnosis = sypnosis;
+		this.director = director;
+		this.cast = cast;
+		this.basePrice = basePrice;
+		this.isBlockBuster = isBlockBuster;
+		this.sales = sales;
 	}
 
 	/**
