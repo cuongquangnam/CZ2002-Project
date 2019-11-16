@@ -8,11 +8,21 @@ import static controller.IOController.getChoice;
 import static controller.IOController.printTitle;
 
 public class MovieShowtimeView extends ViewController {
+    //View to guide the user through the show modification process and take input as to how he/she wants to modify the shows related to a movie.
+    /**
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @Override
     public void initialize() throws IOException, ClassNotFoundException {
         displayMenu();
     }
-
+    
+    /**
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    //Transfer control to the right view which is qualified to guide the user based on his/her choice.
     private void displayMenu() throws IOException, ClassNotFoundException {
         while (true) {
             printTitle("Modify movie shows");
