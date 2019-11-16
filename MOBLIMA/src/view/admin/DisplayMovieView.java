@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import static controller.IOController.*;
 
 public class DisplayMovieView extends ViewController {
+    //View to display the details of a movie chosen by the user.
+    
     @Override
     public void initialize() throws IOException, ClassNotFoundException {
         displayMenu();
