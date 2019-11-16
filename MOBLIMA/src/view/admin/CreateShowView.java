@@ -15,13 +15,15 @@ public class CreateShowView extends ViewController {
     public void initialize() throws IOException, ClassNotFoundException {
         displayMenu();
     }
+    
+    //View to guide the user through the show creation process and provide correct inputs.
 
     private void displayMenu() throws IOException, ClassNotFoundException {
         IOController.printTitle("Create a show");
-        String cineplex_name = null;
-        Cinema cinema = null;
-        Movie movie = new Movie();
-        ArrayList<Movie> movieList = MovieListingController.getAllMovie();
+        String cineplex_name = null; //To store the name of the cineplex of the show
+        Cinema cinema = null; //To store the cinema of the show
+        Movie movie = new Movie(); //To store the movie to be shown in the show
+        ArrayList<Movie> movieList = MovieListingController.getAllMovie(); //List of all movies for which a show can be created
         if(movieList.size() == 0)
             System.out.println("There is no movie yet!");
         else {
@@ -40,7 +42,9 @@ public class CreateShowView extends ViewController {
         else
             movie = movieList.get(choice - 1);
 
-        if(movie.getShowingStatus() == 1 || movie.getShowingStatus() == 4) {
+       
+        //If the showing status is 'Coming Soon' or 'Not Showing', a show cannot be created for the movie
+        if(movie.getShowingStatus() == 1 || movie.getShowingStatus() == 4) { 
             System.out.println("You are not allowed to set showtime for this movie");
             System.out.println("Press ENTER to go back");
             getString();
