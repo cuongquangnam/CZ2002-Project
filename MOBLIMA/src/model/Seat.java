@@ -17,10 +17,9 @@ public class Seat implements Serializable{
      * @param row This it the row number of the seat
      * @param col This is the column number of the seat
      */
-    public Seat(int ROW, int COL) {
-        this.row = ROW;
-        this.col = COL;
-        isSenior = false;
+    public Seat(int row, int col) {
+        this.ROW = row;
+        this.COL = col;
         booked = false;
     }
 
